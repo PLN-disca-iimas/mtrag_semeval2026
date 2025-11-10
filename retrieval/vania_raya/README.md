@@ -34,8 +34,6 @@ mtrag_semeval2026/
 
 Our approach implements **vector-based dense retrieval** for Subtask A of the MTRAG challenge:
 
-Our approach implements **vector-based dense retrieval** for Subtask A of the MTRAG challenge:
-
 ### Core Components
 
 **1. Document Indexing**
