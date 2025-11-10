@@ -1,18 +1,18 @@
-# MTRAG SemEval 2026: Multi-Turn RAG Evaluation System
+# MTRAG SemEval 2026: Multi-Turn Retrieval System
 
-Implementation of a Multi-Turn Retrieval-Augmented Generation (RAG) system for the SemEval 2026 shared task on evaluating conversational RAG systems.
+Implementation of Subtask A (Retrieval) for the SemEval 2026 shared task on evaluating multi-turn conversational RAG systems.
 
 ## Overview
 
-This project implements a comprehensive evaluation framework for multi-turn RAG systems based on the MTRAG benchmark ([Katsis et al., 2025](https://arxiv.org/abs/2501.03468)). The system addresses key challenges in conversational AI including retrieval diversity, answerability detection, and multi-turn question understanding across four different domains.
+This project implements a dense retrieval system for multi-turn conversations based on the MTRAG benchmark ([Katsis et al., 2025](https://arxiv.org/abs/2501.03468)). The system addresses key challenges in conversational retrieval including handling non-standalone questions, maintaining conversation context, and achieving passage diversity across four different domains.
 
 ### Key Features
 
-- **Multi-Turn Conversation Support**: Handles complex conversational contexts with non-standalone questions and co-references
-- **Multiple Retrieval Methods**: Implements dense retrieval using OpenAI embeddings with ChromaDB vector store
-- **Comprehensive Evaluation**: Supports both algorithmic metrics (ROUGE-L, BERTScore) and LLM-based judges (RAGAS, RAD-Bench)
-- **Multi-Domain Coverage**: Evaluates across CLAPNQ (Wikipedia), FiQA (Finance), Government, and Cloud technical documentation
-- **Flexible Architecture**: Supports both local and cloud-based LLM evaluation
+- **Multi-Turn Context Handling**: Processes conversational queries with co-references to previous turns
+- **Dense Retrieval**: Vector-based semantic search using OpenAI embeddings with ChromaDB
+- **Multi-Domain Support**: Evaluates across CLAPNQ (Wikipedia), FiQA (Finance), Government, and Cloud technical documentation
+- **BEIR-Compatible Format**: Follows standard information retrieval evaluation protocols
+- **Efficient Vector Storage**: Persistent ChromaDB database with configurable passage chunking
 
 ## Repository Structure
 
@@ -20,69 +20,66 @@ This project implements a comprehensive evaluation framework for multi-turn RAG 
 mtrag_semeval2026/
 ├── retrieval/
 │   └── vania_raya/
-│       ├── retrieval_tasks/        # Task data and qrels
+│       ├── retrieval_tasks/              # Task data and qrels for each domain
 │       └── scripts/
 │           ├── conversations2retrieval.py    # Convert conversations to BEIR format
 │           ├── create_chroma_db.py          # Build ChromaDB vector database
 │           └── evaluation/
 │               ├── run_retrieval_eval.py    # Evaluate retrieval performance
-│               ├── run_generation_eval.py   # Evaluate generation quality
-│               ├── run_algorithmic.py       # Algorithmic metrics
-│               ├── judge_wrapper.py         # LLM judge wrappers
-│               ├── config.yaml              # Metric configuration
+│               ├── simple_retrieval_test.py # Retrieval testing utilities
 │               └── requirements.txt         # Python dependencies
 ```
 
-## Proposed Solution
+## Proposed Solution: Dense Retrieval System
 
-Our approach focuses on three core components addressing the MTRAG challenge:
+Our approach implements **vector-based dense retrieval** for Subtask A of the MTRAG challenge:
 
-### 1. Retrieval System
+Our approach implements **vector-based dense retrieval** for Subtask A of the MTRAG challenge:
 
-**Vector-Based Dense Retrieval** using ChromaDB with OpenAI embeddings (`text-embedding-3-small`):
-- Converts document corpora into passage-level chunks (512 tokens, 100 token overlap)
-- Builds persistent vector database for efficient similarity search
-- Supports query rewriting for non-standalone questions in later conversation turns
+### Core Components
 
-**Key Implementation**:
-- `create_chroma_db.py`: Ingests JSONL corpora and creates searchable vector stores
-- `simple_retrieval_test.py`: Implements retrieval with configurable top-k results
-- Evaluation metrics: Recall@k and NDCG@k using `pytrec_eval`
+**1. Document Indexing**
+- Processes passage-level corpora in JSONL format
+- Creates passage chunks with configurable size (default: 512 tokens, 100 token overlap)
+- Generates dense vector representations using OpenAI `text-embedding-3-small` model
+- Stores vectors in persistent ChromaDB database for efficient similarity search
 
-### 2. Generation Evaluation
+**2. Query Processing**
+- Converts multi-turn conversations to BEIR-compatible query format
+- Supports different conversation context strategies:
+  - Last turn only (default for evaluation)
+  - Full conversation history
+  - Configurable turn window
+- Handles question-only vs. question+answer context
 
-**Multi-Metric Assessment Framework**:
-- **Algorithmic Metrics**: ROUGE-L, BERTScore (Precision/Recall), BertK-Precision for faithfulness
-- **LLM Judges**: 
-  - RAGAS Faithfulness and Answer Relevancy
-  - RAD-Bench style reference-based evaluation
-  - IDK (I Don't Know) detection for unanswerable questions
-- **IDK Conditioning**: Metrics are conditioned on answerability to penalize hallucinations on unanswerable questions
+**3. Semantic Search**
+- Performs dense vector similarity search using cosine distance
+- Retrieves top-k most relevant passages per query
+- Supports batch processing for efficient evaluation
 
-### 3. Pipeline Integration
+**4. Evaluation Framework**
+- Computes standard IR metrics: Recall@k and NDCG@k
+- Uses `pytrec_eval` for robust metric calculation
+- Outputs results in BEIR format for compatibility
 
-**End-to-End RAG Evaluation**:
-1. **Data Preparation**: Convert MTRAG conversations to BEIR-compatible format with `conversations2retrieval.py`
-2. **Retrieval**: Query ChromaDB vector store with conversation context
-3. **Generation**: Provide retrieved passages to LLM for answer generation
-4. **Evaluation**: Apply both reference-based and reference-less metrics
+### Technical Implementation
 
-**Subtask Coverage**:
-- **Subtask A (Retrieval)**: Dense retrieval with OpenAI embeddings
-- **Subtask B (Generation - Reference)**: Evaluate generation quality given gold passages
-- **Subtask C (Full RAG)**: End-to-end pipeline evaluation
+**Key Scripts**:
+- `create_chroma_db.py`: Builds ChromaDB vector database from passage corpora
+- `conversations2retrieval.py`: Converts MTRAG conversations to queries and qrels
+- `simple_retrieval_test.py`: Implements retrieval logic with OpenAI embeddings
+- `run_retrieval_eval.py`: Evaluates retrieval performance using standard metrics
 
 ## Installation
 
 ### Prerequisites
 - Python 3.8+
-- OpenAI API key (for embeddings and evaluation)
-- CUDA-capable GPU (optional, for local LLM judges)
+- OpenAI API key (for embeddings)
 
 ### Setup
 
 ```bash
-# Clone the repository
+# Navigate to the scripts directory
 cd mtrag_semeval2026/retrieval/vania_raya/scripts/evaluation
 
 # Install dependencies
@@ -90,21 +87,17 @@ pip install -r requirements.txt
 
 # Set environment variables
 export OPENAI_API_KEY="your-api-key"
-export AZURE_OPENAI_API_KEY="your-azure-key"  # If using Azure
-export OPENAI_AZURE_HOST="your-azure-endpoint"
 ```
 
 ## Usage
 
-### 1. Data Preparation
+### 1. Prepare Corpus Data
 
-Convert MTRAG conversations to retrieval format:
+Organize your passage-level corpus in JSONL format:
 
-```bash
-python conversations2retrieval.py \
-  -i /path/to/conversations.json \
-  -o /path/to/output \
-  -t -1  # -1 for last turn, 0 for full conversation
+```json
+{"_id": "doc1_p1", "text": "Passage text here...", "title": "Document Title", "url": "http://..."}
+{"_id": "doc1_p2", "text": "Another passage...", "title": "Document Title", "url": "http://..."}
 ```
 
 ### 2. Build Vector Database
@@ -113,93 +106,123 @@ Create ChromaDB database from passage-level corpus:
 
 ```bash
 python create_chroma_db.py \
-  --input /path/to/corpus.jsonl \
+  --input /path/to/passage_corpus.jsonl \
   --output ./chroma_db \
   --domain clapnq \
-  --embedding-model text-embedding-3-small
+  --embedding-model text-embedding-3-small \
+  --max-docs 1000  # Optional: limit for testing
 ```
 
-### 3. Retrieval Evaluation
+This creates a persistent vector database that can be reused for multiple queries.
+
+### 3. Convert Conversations to Retrieval Format
+
+Convert MTRAG conversations to BEIR-compatible format:
+
+```bash
+python conversations2retrieval.py \
+  -i /path/to/conversations.json \
+  -o /path/to/output_dir \
+  -t -1  # -1 for last turn only, 0 for full conversation
+```
+
+This generates:
+- `queries.jsonl`: Query file with conversation turns
+- `qrels/dev.tsv`: Relevance judgments (query-id, corpus-id, score)
+
+### 4. Run Retrieval
+
+Perform retrieval using the vector database:
+
+```bash
+python simple_retrieval_test.py \
+  --domain clapnq \
+  --corpus_file /path/to/corpus.jsonl \
+  --queries_file /path/to/queries.jsonl \
+  --output_file ./retrieval_results.jsonl \
+  --top_k 10
+```
+
+### 5. Evaluate Results
 
 Evaluate retrieval performance:
 
 ```bash
 python evaluation/run_retrieval_eval.py \
   -q /path/to/queries.jsonl \
-  -qrels /path/to/qrels.tsv \
-  -r /path/to/results.jsonl \
-  -o ./results/
+  -qrels /path/to/qrels/dev.tsv \
+  -r ./retrieval_results.jsonl \
+  -o ./evaluation_results/
 ```
 
-### 4. Generation Evaluation
-
-Run comprehensive generation evaluation:
-
-```bash
-python evaluation/run_generation_eval.py \
-  -i /path/to/responses.jsonl \
-  -o ./evaluation_results.jsonl \
-  -e config.yaml \
-  --provider openai \
-  --openai_key $OPENAI_API_KEY \
-  --azure_host $OPENAI_AZURE_HOST
-```
-
-For local evaluation with Hugging Face models:
-
-```bash
-python evaluation/run_generation_eval.py \
-  -i /path/to/responses.jsonl \
-  -o ./evaluation_results.jsonl \
-  -e config.yaml \
-  --provider hf \
-  --judge_model meta-llama/Llama-3.1-70B-Instruct
-```
+This outputs Recall@k and NDCG@k metrics for k ∈ {1, 3, 5, 10}.
 
 ## Evaluation Metrics
 
-### Retrieval Metrics
+The retrieval system is evaluated using standard information retrieval metrics:
+
 - **Recall@k**: Fraction of relevant passages retrieved in top-k results
-- **NDCG@k**: Normalized Discounted Cumulative Gain at k
+  - Measures the system's ability to find all relevant passages
+  - Computed for k ∈ {1, 3, 5, 10}
 
-### Generation Metrics
-- **RBalg**: Harmonic mean of BERTScore-Recall, ROUGE-L, and BertK-Precision
-- **RBllm**: LLM-based reference comparison (RAD-Bench style)
-- **RLF**: Reference-less faithfulness evaluation (RAGAS)
+- **NDCG@k**: Normalized Discounted Cumulative Gain at position k
+  - Measures ranking quality, giving higher weight to relevant passages at top positions
+  - Accounts for graded relevance judgments
+  - Computed for k ∈ {1, 3, 5, 10}
 
-All metrics are conditioned on answerability using an IDK judge to appropriately handle unanswerable questions.
+Both metrics are computed using `pytrec_eval` following BEIR evaluation standards.
 
 ## Expected Performance
 
-Based on MTRAG benchmark baseline results:
+Based on MTRAG benchmark baseline results for dense retrieval models:
 
-| Model | Recall@5 | NDCG@5 | RBalg | RLF |
-|-------|----------|---------|-------|-----|
-| OpenAI Embeddings | ~0.35* | ~0.30* | - | - |
-| GPT-4o (Reference) | - | - | 0.45 | 0.76 |
-| GPT-4o (Full RAG) | - | - | 0.40 | 0.71 |
+| Retrieval Method | Recall@5 | Recall@10 | NDCG@5 | NDCG@10 |
+|-----------------|----------|-----------|---------|---------|
+| BM25 (baseline) | 0.20 | 0.27 | 0.18 | 0.21 |
+| BGE-base 1.5 | 0.30 | 0.38 | 0.27 | 0.30 |
+| ELSER | 0.49 | 0.58 | 0.45 | 0.49 |
+| OpenAI Embeddings | ~0.35* | ~0.42* | ~0.30* | ~0.33* |
 
-*Estimated based on similar dense retrievers (BGE-base: 0.30 Recall@5, 0.27 NDCG@5)
+*Estimated performance based on similar dense retrieval architectures
+
+### Key Challenges
+
+The MTRAG benchmark reveals several retrieval challenges:
+
+- **Later Turns**: Performance drops significantly after turn 1 (0.89 → 0.47 Recall@5)
+- **Non-Standalone Questions**: Questions with co-references perform 6% worse (0.48 vs 0.42 Recall@5)
+- **Domain Variation**: Performance varies across domains (0.47-0.56 Recall@5)
+- **Passage Diversity**: Average 16.9 unique passages per conversation requires dynamic retrieval
 
 ## Current Implementation Status
 
-- [x] Data preprocessing and format conversion
-- [x] ChromaDB vector database creation
-- [x] Dense retrieval with OpenAI embeddings
-- [ ] Algorithmic evaluation metrics
-- [ ] LLM-based evaluation (RAGAS, RAD-Bench)
-- [ ] IDK conditioning for answerability
+- [x] Data preprocessing and BEIR format conversion
+- [x] ChromaDB vector database creation with OpenAI embeddings
+- [x] Dense retrieval implementation
+- [x] Standard IR metrics evaluation (Recall@k, NDCG@k)
+- [x] Multi-domain support (CLAPNQ, FiQA, Govt, Cloud)
+- [x] Batch processing for efficient evaluation
 - [ ] Query rewriting for non-standalone questions
-- [ ] Hybrid retrieval (dense + sparse)
-- [ ] Multi-hop retrieval strategies
+- [ ] Hybrid retrieval (dense + sparse BM25)
+- [ ] Re-ranking strategies
+- [ ] Conversation-aware context encoding
+
+## Future Improvements
+
+To address the challenges identified in the MTRAG benchmark:
+
+1. **Query Rewriting**: Implement LLM-based rewriting to resolve co-references in non-standalone questions
+2. **Hybrid Retrieval**: Combine dense embeddings with sparse BM25 for better first-stage retrieval
+3. **Conversational Encoding**: Explore methods to better encode multi-turn context
+4. **Re-ranking**: Add a second-stage re-ranker to improve precision of top-k results
+5. **Domain Adaptation**: Fine-tune embeddings for specific domains (finance, technical docs)
 
 ## References
 
-- Katsis, Y., Rosenthal, S., Fadnis, K., et al. (2025). "MTRAG: A Multi-Turn Conversational Benchmark for Evaluating Retrieval-Augmented Generation Systems." *arXiv:2501.03468*
-- Kuo, Y., et al. (2024). "RAD-Bench: A Benchmark for Multi-Turn RAG Systems."
-- Es, S., et al. (2024). "RAGAS: Automated Evaluation of Retrieval Augmented Generation."
+- Katsis, Y., Rosenthal, S., Fadnis, K., et al. (2025). "MTRAG: A Multi-Turn Conversational Benchmark for Evaluating Retrieval-Augmented Generation Systems." *arXiv:2501.03468* [[paper]](https://arxiv.org/abs/2501.03468) [[code]](https://github.com/ibm/mt-rag-benchmark)
+- Thakur, N., et al. (2021). "BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models." *NeurIPS 2021*
+- Xiao, S., et al. (2023). "BGE: BAAI General Embedding." *arXiv preprint*
 
 ## License
 
 Apache 2.0 License - See LICENSE file for details.
-
