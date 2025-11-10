@@ -1,0 +1,6 @@
+{
+  "BM25": "results/bm25_results.jsonl",
+  "BGE-base-1.5": "results/bge_base_results.jsonl",
+  "ELSER": "results/elser_results.jsonl",
+  "OpenAI-small-embeddings": "results/openai_small_results.jsonl"
+}

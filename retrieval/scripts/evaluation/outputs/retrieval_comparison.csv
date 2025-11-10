@@ -1,0 +1,2 @@
+method,Recall@5,Recall@10,nDCG@5,nDCG@10,count
+ELSER,0.0,0.0,0.0,0.0,0

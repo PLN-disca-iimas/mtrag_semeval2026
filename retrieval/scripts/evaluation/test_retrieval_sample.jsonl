@@ -1,0 +1,2 @@
+{"task_id": "test_001", "Collection": "mt-rag-clapnq-test", "collection": "mt-rag-clapnq-test", "contexts": [{"document_id": "doc_1", "score": 0.95}, {"document_id": "doc_2", "score": 0.89}, {"document_id": "doc_3", "score": 0.75}]}
+{"task_id": "test_002", "Collection": "mt-rag-clapnq-test", "collection": "mt-rag-clapnq-test", "contexts": [{"document_id": "doc_4", "score": 0.88}, {"document_id": "doc_5", "score": 0.82}, {"document_id": "doc_1", "score": 0.70}]}
