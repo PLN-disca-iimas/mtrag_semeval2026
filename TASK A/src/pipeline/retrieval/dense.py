@@ -1,0 +1,184 @@
+"""
+Dense retrieval implementations (BGE 1.5, etc.).
+
+Provides unified interface for semantic/dense retrieval methods.
+"""
+
+import os
+import json
+import logging
+import numpy as np
+import torch
+from typing import List, Dict, Any, Optional
+from pathlib import Path
+
+try:
+    import faiss
+    FAISS_AVAILABLE = True
+except ImportError:
+    FAISS_AVAILABLE = False
+    faiss = None
+    
+try:
+    from sentence_transformers import SentenceTransformer
+    SENTENCE_TRANSFORMERS_AVAILABLE = True
+except ImportError:
+    SENTENCE_TRANSFORMERS_AVAILABLE = False
+    SentenceTransformer = None
+
+logger = logging.getLogger(__name__)
+
+class DenseRetriever:
+    """Base class for dense retrieval methods."""
+    
+    def __init__(self, index_path: Path, config: Dict[str, Any]):
+        """
+        Initialize dense retriever.
+        
+        Args:
+            index_path: Path to the directory containing index files
+            config: Retrieval configuration
+        """
+        self.index_path = Path(index_path)
+        self.config = config
+        self.model = None
+        self.index = None
+        self.doc_ids = []
+    
+    def encode_query(self, query: str) -> np.ndarray:
+        """Encode query to dense vector."""
+        raise NotImplementedError
+    
+    def retrieve(self, query: str, top_k: int = 100) -> List[Dict[str, Any]]:
+        """Retrieve documents for a query."""
+        raise NotImplementedError
+
+class BGERetriever(DenseRetriever):
+    """BGE 1.5 dense retrieval."""
+    
+    def __init__(self, index_path: Path, config: Dict[str, Any]):
+        super().__init__(index_path, config)
+        self.model_name = config.get("model_name", "BAAI/bge-base-en-v1.5")
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        
+        if not SENTENCE_TRANSFORMERS_AVAILABLE:
+            raise ImportError(
+                "sentence-transformers is required for BGE retrieval. "
+                "Install with: pip install sentence-transformers"
+            )
+        
+        logger.info(f"Loading BGE model: {self.model_name} on {self.device}")
+        # Use DataParallel if multiple GPUs are available and we are on CUDA
+        if self.device == "cuda" and torch.cuda.device_count() > 1:
+            logger.info(f"Using {torch.cuda.device_count()} GPUs for encoding")
+            # SentenceTransformer handles multi-gpu via device='cuda' usually, 
+            # but for explicit parallel encoding we rely on its internal implementation or just use the primary GPU for single query latency.
+            # For retrieval (single query), using one GPU is often faster due to overhead.
+            pass
+
+        self.model = SentenceTransformer(self.model_name, device=self.device)
+        if self.device == "cuda":
+            self.model.half()
+            
+        # Load FAISS index
+        # Check for different possible filenames
+        possible_filenames = ["index.faiss", "faiss_index.bin"]
+        faiss_path = None
+        for fname in possible_filenames:
+            p = self.index_path / fname
+            if p.exists():
+                faiss_path = p
+                break
+        
+        if not faiss_path:
+            raise FileNotFoundError(f"FAISS index not found at {self.index_path} (checked {possible_filenames})")
+            
+        logger.info(f"Loading FAISS index from {faiss_path}")
+        self.index = faiss.read_index(str(faiss_path))
+        
+        # MANDATORY GPU usage for BGE embeddings
+        if self.device == "cuda":
+            logger.info(f"✓ BGE Model loaded on GPU: {torch.cuda.get_device_name(0)}")
+            logger.info(f"✓ FAISS index on CPU. Index size: {self.index.ntotal} vectors")
+            logger.info("Note: CPU FAISS is often faster than GPU for small k values due to transfer overhead")
+        else:
+            raise RuntimeError("GPU is REQUIRED but CUDA is not available. Set CUDA_VISIBLE_DEVICES or check PyTorch installation.")
+        
+        # Load Doc IDs
+        # Check for different possible filenames
+        possible_id_filenames = ["doc_ids.json", "documents.pkl"]
+        ids_path = None
+        for fname in possible_id_filenames:
+            p = self.index_path / fname
+            if p.exists():
+                ids_path = p
+                break
+                
+        if not ids_path:
+            raise FileNotFoundError(f"Doc IDs not found at {self.index_path} (checked {possible_id_filenames})")
+            
+        if ids_path.suffix == '.json':
+            with open(ids_path, 'r') as f:
+                self.doc_ids = json.load(f)
+        elif ids_path.suffix == '.pkl':
+            import pickle
+            with open(ids_path, 'rb') as f:
+                self.doc_ids = pickle.load(f)
+            
+        if len(self.doc_ids) != self.index.ntotal:
+            logger.warning(f"Index size ({self.index.ntotal}) does not match doc IDs count ({len(self.doc_ids)})")
+
+    def encode_query(self, query: str) -> np.ndarray:
+        """Encode query using BGE model."""
+        # Get instruction from config, default to BGE 1.5 instruction
+        default_instruction = "Represent this sentence for searching relevant passages: "
+        instruction = self.config.get("query_instruction", default_instruction)
+        
+        query_with_instruction = instruction + query
+        
+        embedding = self.model.encode(
+            query_with_instruction,
+            normalize_embeddings=True,
+            convert_to_numpy=True,
+            show_progress_bar=False
+        )
+        return embedding
+    
+    def retrieve(self, query: str, top_k: int = 100) -> List[Dict[str, Any]]:
+        """Retrieve using BGE embeddings."""
+        query_embedding = self.encode_query(query)
+        query_embedding = query_embedding.reshape(1, -1)
+        
+        # Search
+        scores, indices = self.index.search(query_embedding, top_k)
+        
+        results = []
+        for score, idx in zip(scores[0], indices[0]):
+            if idx == -1:
+                continue
+            if idx < len(self.doc_ids):
+                results.append({
+                    "id": self.doc_ids[idx],
+                    "score": float(score)
+                })
+        return results
+
+def get_dense_retriever(
+    model_name: str, 
+    index_path: Path, 
+    config: Dict[str, Any]
+) -> DenseRetriever:
+    """Factory function to get dense retriever by name."""
+    # Map common names to BGERetriever
+    if "bge" in model_name.lower():
+        return BGERetriever(index_path, config)
+    
+    if "voyage" in model_name.lower():
+        from .voyage import VoyageRetriever
+        return VoyageRetriever(index_path, config)
+    
+    if "cohere" in model_name.lower() or "embed" in model_name.lower():
+        from .cohere_embeddings import CohereRetriever
+        return CohereRetriever(index_path, config)
+    
+    raise ValueError(f"Unknown dense retriever: {model_name}")

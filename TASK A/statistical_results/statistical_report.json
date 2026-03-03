@@ -1,0 +1,15 @@
+{
+  "error_analysis": {
+    "total_queries": 11287,
+    "retrieval_errors": 1364,
+    "ranking_errors": 2664,
+    "successes": 7259,
+    "rewrite_induced": 241,
+    "implications": [
+      "Failure rate increases from 18.4% (turn_1) to 41.1% (turn_4+), indicating that the system struggles with longer dialogues. Context-aware query rewriting or conversation memory should be explored.",
+      "241 queries fail with rewrite but succeed without \u2014 the rewrite changes the user's intent. Rewrite models need to be more conservative and context-aware, or a fallback mechanism should route ambiguous rewrites to the original query.",
+      "Ranking errors (2664) outnumber retrieval errors (1364). The candidate pool contains the relevant documents but the ranking model fails to surface them. Investing in stronger rerankers (e.g., cross-encoder fine-tuning) is the priority.",
+      "Rerankers can only help when recall is sufficient: 2664 ranking errors are potentially rescuable, while 1364 retrieval errors are fundamentally out of reach for any reranker."
+    ]
+  }
+}

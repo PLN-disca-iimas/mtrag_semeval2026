@@ -1,0 +1,63 @@
+====================================================================================================
+  ABLATION STATISTICAL TESTS — EA2, EA3, EA5, EA6, EA7
+  MT-RAG Benchmark — Task A Retrieval
+  Generated: 2026-02-16 11:43:25
+  Primary metric: nDCG@5 | α = 0.05 | Bootstrap B = 10000
+====================================================================================================
+
+================================================================================
+  EA2_fusion_method: Fusion method: RRF vs linear interpolation (→ H1)
+================================================================================
+  Wilcoxon raw sig: 9/12
+  After Holm-Bonferroni: 6/12
+    Linear α=0.3       avg |d|=0.208 (small), Holm sig: 2/4 domains
+    Linear α=0.5       avg |d|=0.210 (small), Holm sig: 2/4 domains
+    Linear α=0.7       avg |d|=0.210 (small), Holm sig: 2/4 domains
+
+================================================================================
+  EA3_query_mode: Query formulation mode (→ H2)
+================================================================================
+  Wilcoxon raw sig: 10/12
+  After Holm-Bonferroni: 10/12
+    last_turn          avg |d|=0.130 (negligible), Holm sig: 2/4 domains
+    full_history       avg |d|=0.599 (medium), Holm sig: 4/4 domains
+    full_context       avg |d|=0.599 (medium), Holm sig: 4/4 domains
+
+================================================================================
+  EA5_rrf_k: RRF smoothing parameter k (→ H3)
+================================================================================
+  Wilcoxon raw sig: 5/16
+  After Holm-Bonferroni: 1/16
+    k=1                avg |d|=0.166 (negligible), Holm sig: 1/4 domains
+    k=20               avg |d|=0.015 (negligible), Holm sig: 0/4 domains
+    k=40               avg |d|=0.039 (negligible), Holm sig: 0/4 domains
+    k=100              avg |d|=0.066 (negligible), Holm sig: 0/4 domains
+
+================================================================================
+  EA6_topk: Retrieval depth (top_k candidates) (→ H3/H4)
+================================================================================
+  Wilcoxon raw sig: 0/8
+  After Holm-Bonferroni: 0/8
+    top_k=200          avg |d|=0.000 (negligible), Holm sig: 0/4 domains
+    top_k=500          avg |d|=0.000 (negligible), Holm sig: 0/4 domains
+
+================================================================================
+  EA7_rerank_depth: Reranking depth × reranker model (→ H4)
+================================================================================
+  Wilcoxon raw sig: 7/24
+  After Holm-Bonferroni: 5/24
+    BGE@50             avg |d|=0.122 (negligible), Holm sig: 1/4 domains
+    BGE@100            avg |d|=0.114 (negligible), Holm sig: 1/4 domains
+    BGE@200            avg |d|=0.122 (negligible), Holm sig: 1/4 domains
+    Cohere@50          avg |d|=0.151 (negligible), Holm sig: 1/4 domains
+    Cohere@100         avg |d|=0.000 (negligible), Holm sig: 0/4 domains
+    Cohere@200         avg |d|=0.151 (negligible), Holm sig: 1/4 domains
+
+================================================================================
+  GLOBAL SUMMARY
+================================================================================
+  Total paired tests:            72
+  Wilcoxon raw sig (p < 0.05):   31/72
+  After Holm-Bonferroni FWER:    22/72
+  Shapiro-Wilk reject normality: 60/72 (83.3%)
+  → Justifies non-parametric Wilcoxon

@@ -1,0 +1,108 @@
+================================================================================
+  VALIDACION ESTADISTICA COMPLETA (CORREGIDA)
+  MT-RAG Benchmark - Task A Retrieval
+  Incluye correccion Holm-Bonferroni en TODOS los tests
+================================================================================
+
+1. METODOS ESTADISTICOS APLICADOS
+--------------------------------------------------------------------------------
+
+  Bootstrap Confidence Intervals (95%)
+  - 10000 iteraciones de resampling por experimento (seed=42)
+  - Metodo: Bootstrap percentile, computado inline sobre nDCG@5
+  - Cobertura: 100% experimentos x dominios
+
+  Paired Statistical Tests
+  - Wilcoxon signed-rank test (no-parametrico, elegido porque 100%
+    de las pruebas Shapiro-Wilk rechazan normalidad, p < 1e-8)
+  - t-test pareado reportado pero NO usado para decisiones (normalidad violada)
+  - 28 comparaciones totales (7 tipos x 4 dominios)
+  - Umbral: alpha = 0.05
+
+  Correccion por Multiplicidad: Holm-Bonferroni (FWER)
+  - Aplicada a TODOS los conjuntos de tests:
+    - Comparaciones de rewrite (28 tests)
+    - H1 hibrido vs individual (40 tests)
+    - Degradacion por turno (24 tests)
+    - Concordancia cross-domain (6 tests)
+
+  Effect Size: Cohen's d (negligible <0.2, small <0.5, medium <0.8, large >=0.8)
+
+2. RESULTADOS: COMPARACIONES DE REWRITE
+--------------------------------------------------------------------------------
+
+  Wilcoxon raw p < 0.05:          11/28
+  Despues de Holm-Bonferroni:      0/28
+
+  RESULTADO IMPORTANTE: Ninguna comparacion de rewrite sobrevive
+  la correccion Holm-Bonferroni. Las diferencias entre estrategias de
+  rewrite (GT, Cohere OWN, V2, V3) son reales pero demasiado pequenas
+  para declararse estadisticamente significativas tras correccion por
+  multiplicidad con el tamano de muestra actual (n ~ 180-208 por dominio).
+
+  Los tamanos de efecto son uniformemente pequenos (|d| < 0.21).
+  Las diferencias son del orden practico pero no estadistico.
+
+3. RESULTADOS: HIBRIDO VS INDIVIDUAL (H1)
+--------------------------------------------------------------------------------
+
+  Despues de Holm-Bonferroni:  32/40
+
+  Los sistemas hibridos superan SIGNIFICATIVAMENTE a los componentes
+  individuales en 32/40 comparaciones (Holm-corregido).
+  Especialmente vs BM25 (todos p < 1e-9).
+
+4. RESULTADOS: DEGRADACION POR TURNO
+--------------------------------------------------------------------------------
+
+  Raw p < 0.05:               7/24
+  Despues de Holm-Bonferroni:  2/24
+  Nota: Tamano de muestra bajo (n=9-12 puntos por correlacion)
+
+5. RESULTADOS: CONCORDANCIA CROSS-DOMAIN (Kendall tau)
+--------------------------------------------------------------------------------
+
+  Mean tau = 0.778
+  Raw p < 0.05:               6/6
+  Despues de Holm-Bonferroni:  1/6
+  H5 (rankings difieren): NOT supported
+
+6. CONCLUSIONES DE VALIDEZ
+--------------------------------------------------------------------------------
+
+  VALIDEZ INTERNA
+  - Bootstrap CI con 10000 iteraciones confirma robustez de resultados
+  - Reproducibilidad: seed=42, resultados deterministicos
+  - Consistencia entre modelos sparse/dense verificada
+
+  VALIDEZ ESTADISTICA
+  - H1 (hibrido > individual): 32/40 sobreviven Holm - ROBUSTO
+  - Comparaciones de rewrite: 0/28 tras Holm - efectos pequenos,
+    NO significativos tras correccion por multiplicidad
+  - Friedman-Nemenyi: BM25 significativamente inferior; sistemas avanzados
+    mayormente indistinguibles
+
+  VALIDEZ EXTERNA
+  - 777 queries, 4 dominios especializados
+  - Multiples modelos: BM25, SPLADE, BGE-1.5, BGE-M3, Voyage
+  - 5+ estrategias de rewrite evaluadas
+
+7. QUE SE PUEDE AFIRMAR CON RIGOR
+--------------------------------------------------------------------------------
+
+  Afirmaciones con soporte estadistico (Holm-corregido):
+  1. La fusion hibrida supera significativamente a componentes individuales
+  2. BM25 es significativamente inferior a todos los modelos neuronales
+  3. Query rewriting es esencial (fullhist nDCG@5~0.28 vs rewrite~0.52)
+  4. RRF supera a fusion lineal (ablacion directa, no requiere test pareado)
+
+  Afirmaciones SIN soporte estadistico suficiente:
+  1. Diferencias entre estrategias de rewrite (V2 vs V3 vs OWN vs GT)
+  2. Superioridad entre sistemas avanzados (SPLADE~Voyage~Hybrid~Rerank)
+  3. Degradacion significativa por profundidad de turno
+
+--------------------------------------------------------------------------------
+Generado: 2026-02-11 | Script: run_all_analyses.py
+Correccion FWER: Holm-Bonferroni en todos los conjuntos de tests
+Bootstrap: 10000 iteraciones, seed=42
+--------------------------------------------------------------------------------

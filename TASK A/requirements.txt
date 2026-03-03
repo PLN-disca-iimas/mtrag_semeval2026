@@ -1,0 +1,34 @@
+# MT-RAG Benchmark — Task A Retrieval
+# Pinned dependencies for reproducibility
+# Python 3.11 | CUDA 12.1
+# Install: pip install -r requirements.txt
+
+# ── Core ML ──────────────────────────────────────────────
+torch==2.9.1
+transformers==4.47.1
+sentence-transformers==5.2.0
+accelerate==1.12.0
+peft==0.18.1
+
+# ── Retrieval & Evaluation ───────────────────────────────
+faiss-cpu==1.13.2
+pytrec_eval==0.5
+ir_datasets==0.5.11
+
+# ── Embedding / Reranking APIs ───────────────────────────
+cohere==5.20.1
+voyageai==0.3.7
+
+# ── Scientific Computing ────────────────────────────────
+numpy==1.26.4
+scipy==1.17.0
+scikit-learn==1.8.0
+pandas==2.3.3
+
+# ── Utilities ────────────────────────────────────────────
+tqdm==4.67.1
+PyYAML==6.0.3
+python-dotenv==1.2.1
+rich==14.2.0
+huggingface-hub==0.36.0
+datasets==4.5.0

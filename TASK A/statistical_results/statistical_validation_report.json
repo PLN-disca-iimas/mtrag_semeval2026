@@ -1,0 +1,2696 @@
+{
+  "generated": "2026-02-11",
+  "primary_metric": "nDCG@5",
+  "bootstrap_config": {
+    "n_bootstrap": 10000,
+    "ci_level": 0.95,
+    "method": "percentile",
+    "seed": 42
+  },
+  "bootstrap_ci": {
+    "No-Rewrite": {
+      "clapnq": {
+        "mean": 0.45447465879211707,
+        "ci_lower": 0.40516445992468886,
+        "ci_upper": 0.5046320666748928,
+        "n_bootstrap": 10000,
+        "n_queries": 208,
+        "margin": 0.04973380337510197
+      },
+      "cloud": {
+        "mean": 0.3881356918819218,
+        "ci_lower": 0.33723847796397044,
+        "ci_upper": 0.44174901820955,
+        "n_bootstrap": 10000,
+        "n_queries": 188,
+        "margin": 0.05225527012278977
+      },
+      "fiqa": {
+        "mean": 0.32549890521372815,
+        "ci_lower": 0.27762403250831297,
+        "ci_upper": 0.37444711168961625,
+        "n_bootstrap": 10000,
+        "n_queries": 180,
+        "margin": 0.04841153959065164
+      },
+      "govt": {
+        "mean": 0.3986778262532722,
+        "ci_lower": 0.3452278439567415,
+        "ci_upper": 0.4508966332965013,
+        "n_bootstrap": 10000,
+        "n_queries": 201,
+        "margin": 0.05283439466987991
+      }
+    },
+    "GT-Rewrite": {
+      "clapnq": {
+        "mean": 0.49017422506990704,
+        "ci_lower": 0.4416449638069602,
+        "ci_upper": 0.5389768053719873,
+        "n_bootstrap": 10000,
+        "n_queries": 208,
+        "margin": 0.048665920782513555
+      },
+      "cloud": {
+        "mean": 0.38387033023151645,
+        "ci_lower": 0.3326062335503684,
+        "ci_upper": 0.4378658515659865,
+        "n_bootstrap": 10000,
+        "n_queries": 188,
+        "margin": 0.05262980900780906
+      },
+      "fiqa": {
+        "mean": 0.3588603714389266,
+        "ci_lower": 0.31261580866643596,
+        "ci_upper": 0.4074875200336528,
+        "n_bootstrap": 10000,
+        "n_queries": 180,
+        "margin": 0.04743585568360842
+      },
+      "govt": {
+        "mean": 0.4424962749404388,
+        "ci_lower": 0.39151346251815083,
+        "ci_upper": 0.49280786262791215,
+        "n_bootstrap": 10000,
+        "n_queries": 201,
+        "margin": 0.05064720005488066
+      }
+    },
+    "Cohere-OWN": {
+      "clapnq": {
+        "mean": 0.5358892969753849,
+        "ci_lower": 0.490413604203387,
+        "ci_upper": 0.5813032021783453,
+        "n_bootstrap": 10000,
+        "n_queries": 208,
+        "margin": 0.04544479898747916
+      },
+      "cloud": {
+        "mean": 0.3949302668844438,
+        "ci_lower": 0.34190310198129964,
+        "ci_upper": 0.4487202777907343,
+        "n_bootstrap": 10000,
+        "n_queries": 188,
+        "margin": 0.053408587904717336
+      },
+      "fiqa": {
+        "mean": 0.29601383547234195,
+        "ci_lower": 0.25148544389611993,
+        "ci_upper": 0.3419047767422516,
+        "n_bootstrap": 10000,
+        "n_queries": 180,
+        "margin": 0.04520966642306584
+      },
+      "govt": {
+        "mean": 0.4874889418932958,
+        "ci_lower": 0.43433019472308126,
+        "ci_upper": 0.5404177287256792,
+        "n_bootstrap": 10000,
+        "n_queries": 201,
+        "margin": 0.05304376700129895
+      }
+    },
+    "Cohere-V2": {
+      "clapnq": {
+        "mean": 0.5383417959734819,
+        "ci_lower": 0.49422818539738356,
+        "ci_upper": 0.5833467408218922,
+        "n_bootstrap": 10000,
+        "n_queries": 208,
+        "margin": 0.04455927771225432
+      },
+      "cloud": {
+        "mean": 0.40646588503305275,
+        "ci_lower": 0.3540283963448863,
+        "ci_upper": 0.4592594090805402,
+        "n_bootstrap": 10000,
+        "n_queries": 188,
+        "margin": 0.05261550636782694
+      },
+      "fiqa": {
+        "mean": 0.31747000321552776,
+        "ci_lower": 0.2714245332565451,
+        "ci_upper": 0.36429028140661035,
+        "n_bootstrap": 10000,
+        "n_queries": 180,
+        "margin": 0.04643287407503263
+      },
+      "govt": {
+        "mean": 0.458755320451873,
+        "ci_lower": 0.40704690399657323,
+        "ci_upper": 0.5106748776735351,
+        "n_bootstrap": 10000,
+        "n_queries": 201,
+        "margin": 0.05181398683848096
+      }
+    },
+    "Cohere-V3": {
+      "clapnq": {
+        "mean": 0.5267154245759548,
+        "ci_lower": 0.48023912399115204,
+        "ci_upper": 0.5738413631088207,
+        "n_bootstrap": 10000,
+        "n_queries": 208,
+        "margin": 0.04680111955883434
+      },
+      "cloud": {
+        "mean": 0.4319548072888661,
+        "ci_lower": 0.38080887095177685,
+        "ci_upper": 0.4847670769541533,
+        "n_bootstrap": 10000,
+        "n_queries": 188,
+        "margin": 0.051979103001188215
+      },
+      "fiqa": {
+        "mean": 0.3425529395288256,
+        "ci_lower": 0.29570418696008377,
+        "ci_upper": 0.38929607703741465,
+        "n_bootstrap": 10000,
+        "n_queries": 180,
+        "margin": 0.04679594503866544
+      },
+      "govt": {
+        "mean": 0.4424952862374415,
+        "ci_lower": 0.38925840080869667,
+        "ci_upper": 0.49514324896025497,
+        "n_bootstrap": 10000,
+        "n_queries": 201,
+        "margin": 0.05294242407577915
+      }
+    }
+  },
+  "statistical_tests": {
+    "Rewrite (GT) impact": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": -0.03569956627778999,
+        "std_diff": 0.2571631893267429,
+        "cohens_d": -0.13882067008645335,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7567406350156611,
+          "p": 3.167470352854807e-17,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1349.0,
+          "p": 0.02471640843174624,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.002100177142443,
+          "p": 0.046579135554345404,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.02471640843174624,
+          "adjusted_p": 0.5190445770666711,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": 0.004265361650405371,
+        "std_diff": 0.22616548781670953,
+        "cohens_d": 0.01885947183938243,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7214987439573175,
+          "p": 1.8082655951664406e-17,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1195.5,
+          "p": 0.9427991410273109,
+          "sig": false
+        },
+        "ttest": {
+          "stat": 0.258588049867928,
+          "p": 0.796237504954229,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.9427991410273109,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": -0.033361466225198436,
+        "std_diff": 0.26756180852193084,
+        "cohens_d": -0.12468695138901055,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.821427764968615,
+          "p": 1.4107247395144703e-13,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1321.0,
+          "p": 0.10991717400490571,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -1.672850995903457,
+          "p": 0.09610345709569246,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.10991717400490571,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": -0.04381844868716663,
+        "std_diff": 0.2632118742157008,
+        "cohens_d": -0.16647595706343415,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8082986239748391,
+          "p": 5.4813989110995606e-15,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1314.5,
+          "p": 0.011162853955841047,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.3602040387539005,
+          "p": 0.019227459723363767,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.011162853955841047,
+          "adjusted_p": 0.26790849494018515,
+          "is_significant": false
+        }
+      }
+    },
+    "Cohere vs GT": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": -0.04571507190547776,
+        "std_diff": 0.254625330172372,
+        "cohens_d": -0.17953858658357547,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8440440412251236,
+          "p": 1.1174270453881679e-13,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2467.0,
+          "p": 0.030866818033720204,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.589342320422572,
+          "p": 0.01029847439667835,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.030866818033720204,
+          "adjusted_p": 0.6173363606744041,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": -0.011059936652927312,
+        "std_diff": 0.33359084783946225,
+        "cohens_d": -0.03315419688892182,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8985334468898388,
+          "p": 5.017996502031723e-10,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2614.0,
+          "p": 0.8332203474561534,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -0.4545874449845487,
+          "p": 0.6499333188792887,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.8332203474561534,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": 0.0628465359665846,
+        "std_diff": 0.30069724718877006,
+        "cohens_d": 0.20900269800684565,
+        "effect_label": "small",
+        "shapiro": {
+          "stat": 0.9148977050498738,
+          "p": 1.0321697372640762e-08,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2058.5,
+          "p": 0.009843160990609471,
+          "sig": true
+        },
+        "ttest": {
+          "stat": 2.8040654422775213,
+          "p": 0.0056034522093118206,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.009843160990609471,
+          "adjusted_p": 0.25592218575584624,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": -0.044992666952857,
+        "std_diff": 0.28346890198590047,
+        "cohens_d": -0.1587217032336857,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.9071601377490417,
+          "p": 6.853762808542993e-10,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2947.5,
+          "p": 0.054604238906145956,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -2.250268516895376,
+          "p": 0.025520632980565127,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.054604238906145956,
+          "adjusted_p": 0.9282720614044813,
+          "is_significant": false
+        }
+      }
+    },
+    "Cohere V2 vs GT": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": -0.04816757090357478,
+        "std_diff": 0.2547370263365852,
+        "cohens_d": -0.1890874349024629,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8554045673968895,
+          "p": 4.04648000599018e-13,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2239.0,
+          "p": 0.010559487036504448,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.7270577694176947,
+          "p": 0.0069386037763154275,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.010559487036504448,
+          "adjusted_p": 0.2639871759126112,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": -0.022595554801536282,
+        "std_diff": 0.3173389654121348,
+        "cohens_d": -0.07120321566899494,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8537451676235632,
+          "p": 1.85987755383115e-12,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1938.5,
+          "p": 0.2675345001116116,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -0.9762893064366345,
+          "p": 0.3301823833858635,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.2675345001116116,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": 0.041390368223398796,
+        "std_diff": 0.2857185857491814,
+        "cohens_d": 0.14486410850866732,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8849601013241362,
+          "p": 1.523709149616495e-10,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2040.0,
+          "p": 0.03581332629475852,
+          "sig": true
+        },
+        "ttest": {
+          "stat": 1.943555965431949,
+          "p": 0.053517169596123924,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.03581332629475852,
+          "adjusted_p": 0.651021353499663,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": -0.016259045511434162,
+        "std_diff": 0.25208829886388845,
+        "cohens_d": -0.06449742244388448,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8809991239079988,
+          "p": 1.675953647050974e-11,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 3011.0,
+          "p": 0.54834422954379,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -0.9144087808777086,
+          "p": 0.3616031758061376,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.54834422954379,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      }
+    },
+    "Cohere V3 vs GT": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": -0.03654119950604768,
+        "std_diff": 0.2553442623541808,
+        "cohens_d": -0.143105622013358,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7960248883112198,
+          "p": 9.119598618254444e-16,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1990.0,
+          "p": 0.0658245436087346,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -2.063898632713603,
+          "p": 0.04027441311245555,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.0658245436087346,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": -0.04808447705734959,
+        "std_diff": 0.27610349987790367,
+        "cohens_d": -0.1741538121074081,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8133315797751547,
+          "p": 3.023757209083636e-14,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1230.0,
+          "p": 0.013309927542295085,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.3878767671679113,
+          "p": 0.017942121247481194,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.013309927542295085,
+          "adjusted_p": 0.30612833347278695,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": 0.01630743191010103,
+        "std_diff": 0.24053134038968402,
+        "cohens_d": 0.06779753472832963,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8884653785265897,
+          "p": 2.399651147770943e-10,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2086.5,
+          "p": 0.22961878694034688,
+          "sig": false
+        },
+        "ttest": {
+          "stat": 0.9095993785348492,
+          "p": 0.3642569646546922,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.22961878694034688,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": 9.887029972618383e-07,
+        "std_diff": 0.23519643651250507,
+        "cohens_d": 4.203732894519841e-06,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8719923670064993,
+          "p": 5.299341866062985e-12,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 2561.5,
+          "p": 0.7014991414616647,
+          "sig": false
+        },
+        "ttest": {
+          "stat": 5.959819982988169e-05,
+          "p": 0.9999525069197545,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.7014991414616647,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      }
+    },
+    "V2 vs OWN": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": -0.002452498998097019,
+        "std_diff": 0.1269381796384575,
+        "cohens_d": -0.019320420405823765,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.6595896937999657,
+          "p": 3.316292466868742e-20,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 733.0,
+          "p": 0.5959308376246348,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -0.27864306596638433,
+          "p": 0.7807969181454821,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.5959308376246348,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": -0.011535618148608973,
+        "std_diff": 0.1730059507072505,
+        "cohens_d": -0.06667758013399806,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7251348659807287,
+          "p": 2.3381252329897405e-17,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 786.0,
+          "p": 0.3422574206007719,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -0.9142369185069488,
+          "p": 0.3617696674709953,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.3422574206007719,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": -0.0214561677431858,
+        "std_diff": 0.18391841596282735,
+        "cohens_d": -0.11666133388108495,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7916165227164704,
+          "p": 9.592448388170757e-15,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1014.5,
+          "p": 0.13105509235945784,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -1.5651760382744482,
+          "p": 0.11930779749150472,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.13105509235945784,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": 0.02873362144142284,
+        "std_diff": 0.16102383872771162,
+        "cohens_d": 0.17844327678814403,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.5691994033598076,
+          "p": 4.359913122661856e-22,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 561.0,
+          "p": 0.009155489856482806,
+          "sig": true
+        },
+        "ttest": {
+          "stat": 2.529870079106507,
+          "p": 0.01218135790901738,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.009155489856482806,
+          "adjusted_p": 0.24719822612503575,
+          "is_significant": false
+        }
+      }
+    },
+    "V3 vs OWN": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": 0.009173872399430082,
+        "std_diff": 0.16438903858564444,
+        "cohens_d": 0.05580586438596411,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7341823901795408,
+          "p": 5.485658407091551e-18,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1308.5,
+          "p": 0.8173833643619687,
+          "sig": false
+        },
+        "ttest": {
+          "stat": 0.8048436225503302,
+          "p": 0.4218333720049101,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.8173833643619687,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": -0.03702454040442228,
+        "std_diff": 0.2258743717505475,
+        "cohens_d": -0.16391651740339985,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.785954935455824,
+          "p": 2.621530046978284e-15,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1115.5,
+          "p": 0.034264281763140156,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.247510054231699,
+          "p": 0.025775703287247438,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.034264281763140156,
+          "adjusted_p": 0.651021353499663,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": -0.046539104056483566,
+        "std_diff": 0.25081042624250816,
+        "cohens_d": -0.1855549019039962,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.8242691465716774,
+          "p": 1.8521678458383875e-13,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1539.5,
+          "p": 0.019570641033164318,
+          "sig": true
+        },
+        "ttest": {
+          "stat": -2.4894802462864183,
+          "p": 0.013705466369589013,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.019570641033164318,
+          "adjusted_p": 0.43055410272961503,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": 0.04499365565585427,
+        "std_diff": 0.2262664280848775,
+        "cohens_d": 0.19885254748924086,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.7239781227408488,
+          "p": 5.3326703916283325e-18,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 1073.5,
+          "p": 0.003692214420281278,
+          "sig": true
+        },
+        "ttest": {
+          "stat": 2.8192214299803546,
+          "p": 0.005298161206296451,
+          "sig": true,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.003692214420281278,
+          "adjusted_p": 0.10338200376787579,
+          "is_significant": false
+        }
+      }
+    },
+    "V3 vs V2": {
+      "clapnq": {
+        "n_queries": 208,
+        "mean_diff": 0.011626371397527103,
+        "std_diff": 0.13592266953808527,
+        "cohens_d": 0.08553666160680981,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.5545497922861875,
+          "p": 8.911454369629613e-23,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 376.5,
+          "p": 0.3482847910155181,
+          "sig": false
+        },
+        "ttest": {
+          "stat": 1.233627278329054,
+          "p": 0.21874071534759215,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.3482847910155181,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "cloud": {
+        "n_queries": 188,
+        "mean_diff": -0.02548892225581331,
+        "std_diff": 0.19696913626421828,
+        "cohens_d": -0.12940566591448824,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.5729679199965961,
+          "p": 2.599238216601438e-21,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 487.0,
+          "p": 0.2118560124080472,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -1.7743210985900555,
+          "p": 0.07763719087378163,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.2118560124080472,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "fiqa": {
+        "n_queries": 180,
+        "mean_diff": -0.025082936313297763,
+        "std_diff": 0.21740793554287335,
+        "cohens_d": -0.11537268057455097,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.6501860546622686,
+          "p": 4.722358601957654e-19,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 973.5,
+          "p": 0.11540148954998967,
+          "sig": false
+        },
+        "ttest": {
+          "stat": -1.5478869397783661,
+          "p": 0.12341570383111265,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.11540148954998967,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      },
+      "govt": {
+        "n_queries": 201,
+        "mean_diff": 0.016260034214431427,
+        "std_diff": 0.1848786915522168,
+        "cohens_d": 0.08794974731332948,
+        "effect_label": "negligible",
+        "shapiro": {
+          "stat": 0.5855997366116585,
+          "p": 1.0322742144596818e-21,
+          "normal": false
+        },
+        "wilcoxon": {
+          "stat": 524.0,
+          "p": 0.27319132064245555,
+          "sig": false
+        },
+        "ttest": {
+          "stat": 1.2469028712093466,
+          "p": 0.21389138536154492,
+          "sig": false,
+          "normality_ok": false
+        },
+        "holm": {
+          "original_p": 0.27319132064245555,
+          "adjusted_p": 1.0,
+          "is_significant": false
+        }
+      }
+    }
+  },
+  "holm_bonferroni_applied": true,
+  "summary": {
+    "total": 28,
+    "sig_raw": 11,
+    "sig_holm": 0
+  },
+  "h1_hybrid_vs_individual": {
+    "clapnq": {
+      "Hybrid S+B vs BM25": {
+        "n": 208,
+        "h_mean": 0.49017422506990704,
+        "i_mean": 0.21570309472684063,
+        "diff": 0.2744711303430664,
+        "wilcoxon_p": 5.571831522462663e-21,
+        "d": 0.8481674562645638,
+        "label": "large",
+        "holm_p": 2.1730142937604386e-19,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs SPLADE": {
+        "n": 208,
+        "h_mean": 0.49017422506990704,
+        "i_mean": 0.46823613081769017,
+        "diff": 0.021938094252216878,
+        "wilcoxon_p": 0.1102447855174389,
+        "d": 0.12290786703124842,
+        "label": "negligible",
+        "holm_p": 0.5802502133325531,
+        "holm_sig": false
+      },
+      "Hybrid S+B vs BGE-1.5": {
+        "n": 208,
+        "h_mean": 0.49017422506990704,
+        "i_mean": 0.4521354167457361,
+        "diff": 0.03803880832417095,
+        "wilcoxon_p": 0.0006335859529992534,
+        "d": 0.2201513964292536,
+        "label": "small",
+        "holm_p": 0.0063358595299925335,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs BGE-M3": {
+        "n": 208,
+        "h_mean": 0.49017422506990704,
+        "i_mean": 0.3759860892408977,
+        "diff": 0.11418813582900933,
+        "wilcoxon_p": 1.4958525119360685e-09,
+        "d": 0.4513302816877582,
+        "label": "small",
+        "holm_p": 3.889216531033778e-08,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs Voyage": {
+        "n": 208,
+        "h_mean": 0.49017422506990704,
+        "i_mean": 0.46481303146012654,
+        "diff": 0.025361193609780508,
+        "wilcoxon_p": 0.12453277561445235,
+        "d": 0.11122012881500452,
+        "label": "negligible",
+        "holm_p": 0.5802502133325531,
+        "holm_sig": false
+      },
+      "Hybrid S+V vs BM25": {
+        "n": 208,
+        "h_mean": 0.51720819017179,
+        "i_mean": 0.21570309472684063,
+        "diff": 0.30150509544494936,
+        "wilcoxon_p": 1.5700558556739474e-22,
+        "d": 0.9166130499794124,
+        "label": "large",
+        "holm_p": 6.28022342269579e-21,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs SPLADE": {
+        "n": 208,
+        "h_mean": 0.51720819017179,
+        "i_mean": 0.46823613081769017,
+        "diff": 0.04897205935409982,
+        "wilcoxon_p": 0.00019426106353309663,
+        "d": 0.2686963350290977,
+        "label": "small",
+        "holm_p": 0.0025253938259302564,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BGE-1.5": {
+        "n": 208,
+        "h_mean": 0.51720819017179,
+        "i_mean": 0.4521354167457361,
+        "diff": 0.06507277342605389,
+        "wilcoxon_p": 4.913375202879828e-05,
+        "d": 0.27342396469907687,
+        "label": "small",
+        "holm_p": 0.0008352737844895708,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BGE-M3": {
+        "n": 208,
+        "h_mean": 0.51720819017179,
+        "i_mean": 0.3759860892408977,
+        "diff": 0.14122210093089227,
+        "wilcoxon_p": 3.034080954802065e-11,
+        "d": 0.5183864423455055,
+        "label": "medium",
+        "holm_p": 9.709059055366609e-10,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs Voyage": {
+        "n": 208,
+        "h_mean": 0.51720819017179,
+        "i_mean": 0.46481303146012654,
+        "diff": 0.05239515871166345,
+        "wilcoxon_p": 3.879830207384453e-06,
+        "d": 0.3357937101167176,
+        "label": "small",
+        "holm_p": 7.37167739403046e-05,
+        "holm_sig": true
+      }
+    },
+    "cloud": {
+      "Hybrid S+B vs BM25": {
+        "n": 188,
+        "h_mean": 0.38387033023151645,
+        "i_mean": 0.19345300104645222,
+        "diff": 0.19041732918506424,
+        "wilcoxon_p": 8.31870529038025e-12,
+        "d": 0.5539948849868649,
+        "label": "medium",
+        "holm_p": 2.7451727458254827e-10,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs SPLADE": {
+        "n": 188,
+        "h_mean": 0.38387033023151645,
+        "i_mean": 0.386340190377079,
+        "diff": -0.0024698601455625524,
+        "wilcoxon_p": 1.0,
+        "d": -0.01241375559095521,
+        "label": "negligible",
+        "holm_p": 1.0,
+        "holm_sig": false
+      },
+      "Hybrid S+B vs BGE-1.5": {
+        "n": 188,
+        "h_mean": 0.38387033023151645,
+        "i_mean": 0.33425888752192023,
+        "diff": 0.04961144270959622,
+        "wilcoxon_p": 0.00016703165903439048,
+        "d": 0.23984467099124154,
+        "label": "small",
+        "holm_p": 0.0023384432264814668,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs BGE-M3": {
+        "n": 188,
+        "h_mean": 0.38387033023151645,
+        "i_mean": 0.2442955798899298,
+        "diff": 0.13957475034158665,
+        "wilcoxon_p": 1.2444690141058788e-09,
+        "d": 0.4614550111231901,
+        "label": "small",
+        "holm_p": 3.360066338085873e-08,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs Voyage": {
+        "n": 188,
+        "h_mean": 0.38387033023151645,
+        "i_mean": 0.31078015408555654,
+        "diff": 0.07309017614595992,
+        "wilcoxon_p": 0.0003432934535892951,
+        "d": 0.24640600731469375,
+        "label": "small",
+        "holm_p": 0.004079374955898612,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BM25": {
+        "n": 188,
+        "h_mean": 0.40206410577496354,
+        "i_mean": 0.19345300104645222,
+        "diff": 0.20861110472851133,
+        "wilcoxon_p": 2.744285304974685e-13,
+        "d": 0.6143693042954802,
+        "label": "medium",
+        "holm_p": 9.330570036913928e-12,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs SPLADE": {
+        "n": 188,
+        "h_mean": 0.40206410577496354,
+        "i_mean": 0.386340190377079,
+        "diff": 0.015723915397884536,
+        "wilcoxon_p": 0.23338013054051654,
+        "d": 0.07043869207770698,
+        "label": "negligible",
+        "holm_p": 0.7001403916215496,
+        "holm_sig": false
+      },
+      "Hybrid S+V vs BGE-1.5": {
+        "n": 188,
+        "h_mean": 0.40206410577496354,
+        "i_mean": 0.33425888752192023,
+        "diff": 0.06780521825304331,
+        "wilcoxon_p": 0.004980086371397951,
+        "d": 0.22126601574080654,
+        "label": "small",
+        "holm_p": 0.04482077734258156,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BGE-M3": {
+        "n": 188,
+        "h_mean": 0.40206410577496354,
+        "i_mean": 0.2442955798899298,
+        "diff": 0.15776852588503373,
+        "wilcoxon_p": 6.610595949354515e-10,
+        "d": 0.491601693790314,
+        "label": "small",
+        "holm_p": 1.850966865819264e-08,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs Voyage": {
+        "n": 188,
+        "h_mean": 0.40206410577496354,
+        "i_mean": 0.31078015408555654,
+        "diff": 0.091283951689407,
+        "wilcoxon_p": 1.8929408157141435e-06,
+        "d": 0.36337612736487995,
+        "label": "small",
+        "holm_p": 3.785881631428287e-05,
+        "holm_sig": true
+      }
+    },
+    "fiqa": {
+      "Hybrid S+B vs BM25": {
+        "n": 180,
+        "h_mean": 0.3588603714389266,
+        "i_mean": 0.10635673672305275,
+        "diff": 0.25250363471587384,
+        "wilcoxon_p": 7.955962088599732e-17,
+        "d": 0.7509492595544635,
+        "label": "medium",
+        "holm_p": 2.943705972781901e-15,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs SPLADE": {
+        "n": 180,
+        "h_mean": 0.3588603714389266,
+        "i_mean": 0.3482520067971503,
+        "diff": 0.01060836464177628,
+        "wilcoxon_p": 0.3540877776239473,
+        "d": 0.04378688657448916,
+        "label": "negligible",
+        "holm_p": 0.7081755552478946,
+        "holm_sig": false
+      },
+      "Hybrid S+B vs BGE-1.5": {
+        "n": 180,
+        "h_mean": 0.3588603714389266,
+        "i_mean": 0.3089218624161408,
+        "diff": 0.04993850902278579,
+        "wilcoxon_p": 0.000339947912991551,
+        "d": 0.25878195262074566,
+        "label": "small",
+        "holm_p": 0.004079374955898612,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs BGE-M3": {
+        "n": 180,
+        "h_mean": 0.3588603714389266,
+        "i_mean": 0.22450893700675184,
+        "diff": 0.13435143443217473,
+        "wilcoxon_p": 3.6759589019815e-10,
+        "d": 0.5252561813832445,
+        "label": "medium",
+        "holm_p": 1.066028081574635e-08,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs Voyage": {
+        "n": 180,
+        "h_mean": 0.3588603714389266,
+        "i_mean": 0.2740915276884803,
+        "diff": 0.0847688437504463,
+        "wilcoxon_p": 7.146037368699427e-05,
+        "d": 0.3194610388207686,
+        "label": "small",
+        "holm_p": 0.0011433659789919083,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BM25": {
+        "n": 180,
+        "h_mean": 0.38726850619536585,
+        "i_mean": 0.10635673672305275,
+        "diff": 0.2809117694723131,
+        "wilcoxon_p": 4.42194403213104e-18,
+        "d": 0.8523021960439822,
+        "label": "large",
+        "holm_p": 1.6803387322097953e-16,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs SPLADE": {
+        "n": 180,
+        "h_mean": 0.38726850619536585,
+        "i_mean": 0.3482520067971503,
+        "diff": 0.039016499398215554,
+        "wilcoxon_p": 0.013297689216683239,
+        "d": 0.17092254478885235,
+        "label": "negligible",
+        "holm_p": 0.10638151373346591,
+        "holm_sig": false
+      },
+      "Hybrid S+V vs BGE-1.5": {
+        "n": 180,
+        "h_mean": 0.38726850619536585,
+        "i_mean": 0.3089218624161408,
+        "diff": 0.07834664377922507,
+        "wilcoxon_p": 0.00013210594363358632,
+        "d": 0.30424218668664044,
+        "label": "small",
+        "holm_p": 0.001981589154503795,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BGE-M3": {
+        "n": 180,
+        "h_mean": 0.38726850619536585,
+        "i_mean": 0.22450893700675184,
+        "diff": 0.162759569188614,
+        "wilcoxon_p": 4.363783575762264e-11,
+        "d": 0.5481408945101776,
+        "label": "medium",
+        "holm_p": 1.3527729084863019e-09,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs Voyage": {
+        "n": 180,
+        "h_mean": 0.38726850619536585,
+        "i_mean": 0.2740915276884803,
+        "diff": 0.11317697850688557,
+        "wilcoxon_p": 2.5277677071851703e-08,
+        "d": 0.4602153307199873,
+        "label": "small",
+        "holm_p": 6.066642497244409e-07,
+        "holm_sig": true
+      }
+    },
+    "govt": {
+      "Hybrid S+B vs BM25": {
+        "n": 201,
+        "h_mean": 0.4424962749404388,
+        "i_mean": 0.2679192443462096,
+        "diff": 0.1745770305942292,
+        "wilcoxon_p": 1.0796901114059818e-08,
+        "d": 0.44935313569258567,
+        "label": "small",
+        "holm_p": 2.6992252785149547e-07,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs SPLADE": {
+        "n": 201,
+        "h_mean": 0.4424962749404388,
+        "i_mean": 0.42249317937520375,
+        "diff": 0.02000309556523505,
+        "wilcoxon_p": 0.06744084868236373,
+        "d": 0.09243776256541208,
+        "label": "negligible",
+        "holm_p": 0.47208594077654614,
+        "holm_sig": false
+      },
+      "Hybrid S+B vs BGE-1.5": {
+        "n": 201,
+        "h_mean": 0.4424962749404388,
+        "i_mean": 0.3790162114848276,
+        "diff": 0.06348006345561119,
+        "wilcoxon_p": 9.165315972751801e-07,
+        "d": 0.3236783581449731,
+        "label": "small",
+        "holm_p": 1.9247163542778784e-05,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs BGE-M3": {
+        "n": 201,
+        "h_mean": 0.4424962749404388,
+        "i_mean": 0.29244358945016985,
+        "diff": 0.15005268549026896,
+        "wilcoxon_p": 9.96019867099937e-11,
+        "d": 0.49468527319944183,
+        "label": "small",
+        "holm_p": 2.988059601299811e-09,
+        "holm_sig": true
+      },
+      "Hybrid S+B vs Voyage": {
+        "n": 201,
+        "h_mean": 0.4424962749404388,
+        "i_mean": 0.4092835374058922,
+        "diff": 0.03321273753454662,
+        "wilcoxon_p": 0.09670836888875885,
+        "d": 0.11703643425352114,
+        "label": "negligible",
+        "holm_p": 0.5802502133325531,
+        "holm_sig": false
+      },
+      "Hybrid S+V vs BM25": {
+        "n": 201,
+        "h_mean": 0.49126178195754816,
+        "i_mean": 0.2679192443462096,
+        "diff": 0.22334253761133854,
+        "wilcoxon_p": 2.471680808480942e-13,
+        "d": 0.5980847318164824,
+        "label": "medium",
+        "holm_p": 8.650882829683298e-12,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs SPLADE": {
+        "n": 201,
+        "h_mean": 0.49126178195754816,
+        "i_mean": 0.42249317937520375,
+        "diff": 0.0687686025823444,
+        "wilcoxon_p": 1.5224678516910033e-05,
+        "d": 0.3290439115713454,
+        "label": "small",
+        "holm_p": 0.0002740442133043806,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BGE-1.5": {
+        "n": 201,
+        "h_mean": 0.49126178195754816,
+        "i_mean": 0.3790162114848276,
+        "diff": 0.11224557047272055,
+        "wilcoxon_p": 7.895137837200891e-07,
+        "d": 0.35665396752448536,
+        "label": "small",
+        "holm_p": 1.7369303241841962e-05,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs BGE-M3": {
+        "n": 201,
+        "h_mean": 0.49126178195754816,
+        "i_mean": 0.29244358945016985,
+        "diff": 0.1988181925073783,
+        "wilcoxon_p": 6.47600683008293e-14,
+        "d": 0.5980377073108827,
+        "label": "medium",
+        "holm_p": 2.3313624588298546e-12,
+        "holm_sig": true
+      },
+      "Hybrid S+V vs Voyage": {
+        "n": 201,
+        "h_mean": 0.49126178195754816,
+        "i_mean": 0.4092835374058922,
+        "diff": 0.08197824455165598,
+        "wilcoxon_p": 1.4514132324195038e-07,
+        "d": 0.39388556273241015,
+        "label": "small",
+        "holm_p": 3.3382504345648586e-06,
+        "holm_sig": true
+      }
+    }
+  },
+  "friedman_nemenyi": {
+    "clapnq": {
+      "chi2": 218.84963144963206,
+      "p": 1.8303971595179814e-44,
+      "sig": true,
+      "n": 208,
+      "k": 7,
+      "ranks": {
+        "BM25": 5.615384615384615,
+        "SPLADE": 3.8966346153846154,
+        "BGE-1.5": 4.081730769230769,
+        "Voyage": 3.8774038461538463,
+        "Hybrid S+B": 3.6490384615384617,
+        "Hybrid S+V": 3.300480769230769,
+        "Rerank BGE(S+B)": 3.579326923076923
+      },
+      "cd": 0.883235140747248,
+      "pairs": {
+        "BM25 vs SPLADE": {
+          "rank_diff": 1.7187499999999996,
+          "cd": 0.883235140747248,
+          "sig": true
+        },
+        "BM25 vs BGE-1.5": {
+          "rank_diff": 1.5336538461538458,
+          "cd": 0.883235140747248,
+          "sig": true
+        },
+        "BM25 vs Voyage": {
+          "rank_diff": 1.7379807692307687,
+          "cd": 0.883235140747248,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+B": {
+          "rank_diff": 1.9663461538461533,
+          "cd": 0.883235140747248,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+V": {
+          "rank_diff": 2.314903846153846,
+          "cd": 0.883235140747248,
+          "sig": true
+        },
+        "BM25 vs Rerank BGE(S+B)": {
+          "rank_diff": 2.036057692307692,
+          "cd": 0.883235140747248,
+          "sig": true
+        },
+        "SPLADE vs BGE-1.5": {
+          "rank_diff": 0.18509615384615374,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "SPLADE vs Voyage": {
+          "rank_diff": 0.019230769230769162,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+B": {
+          "rank_diff": 0.24759615384615374,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+V": {
+          "rank_diff": 0.5961538461538463,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "SPLADE vs Rerank BGE(S+B)": {
+          "rank_diff": 0.3173076923076925,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "BGE-1.5 vs Voyage": {
+          "rank_diff": 0.2043269230769229,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+B": {
+          "rank_diff": 0.4326923076923075,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+V": {
+          "rank_diff": 0.78125,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "BGE-1.5 vs Rerank BGE(S+B)": {
+          "rank_diff": 0.5024038461538463,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+B": {
+          "rank_diff": 0.22836538461538458,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+V": {
+          "rank_diff": 0.5769230769230771,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "Voyage vs Rerank BGE(S+B)": {
+          "rank_diff": 0.29807692307692335,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "Hybrid S+B vs Hybrid S+V": {
+          "rank_diff": 0.3485576923076925,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "Hybrid S+B vs Rerank BGE(S+B)": {
+          "rank_diff": 0.06971153846153877,
+          "cd": 0.883235140747248,
+          "sig": false
+        },
+        "Hybrid S+V vs Rerank BGE(S+B)": {
+          "rank_diff": 0.27884615384615374,
+          "cd": 0.883235140747248,
+          "sig": false
+        }
+      }
+    },
+    "cloud": {
+      "chi2": 123.35146831530064,
+      "p": 3.2199445634382783e-24,
+      "sig": true,
+      "n": 188,
+      "k": 7,
+      "ranks": {
+        "BM25": 5.074468085106383,
+        "SPLADE": 3.6914893617021276,
+        "BGE-1.5": 4.170212765957447,
+        "Voyage": 4.300531914893617,
+        "Hybrid S+B": 3.61968085106383,
+        "Hybrid S+V": 3.5452127659574466,
+        "Rerank BGE(S+B)": 3.598404255319149
+      },
+      "cd": 0.9290285972311281,
+      "pairs": {
+        "BM25 vs SPLADE": {
+          "rank_diff": 1.3829787234042552,
+          "cd": 0.9290285972311281,
+          "sig": true
+        },
+        "BM25 vs BGE-1.5": {
+          "rank_diff": 0.9042553191489358,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "BM25 vs Voyage": {
+          "rank_diff": 0.7739361702127656,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "BM25 vs Hybrid S+B": {
+          "rank_diff": 1.454787234042553,
+          "cd": 0.9290285972311281,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+V": {
+          "rank_diff": 1.5292553191489362,
+          "cd": 0.9290285972311281,
+          "sig": true
+        },
+        "BM25 vs Rerank BGE(S+B)": {
+          "rank_diff": 1.476063829787234,
+          "cd": 0.9290285972311281,
+          "sig": true
+        },
+        "SPLADE vs BGE-1.5": {
+          "rank_diff": 0.47872340425531945,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "SPLADE vs Voyage": {
+          "rank_diff": 0.6090425531914896,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+B": {
+          "rank_diff": 0.07180851063829774,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+V": {
+          "rank_diff": 0.146276595744681,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "SPLADE vs Rerank BGE(S+B)": {
+          "rank_diff": 0.09308510638297873,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "BGE-1.5 vs Voyage": {
+          "rank_diff": 0.13031914893617014,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+B": {
+          "rank_diff": 0.5505319148936172,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+V": {
+          "rank_diff": 0.6250000000000004,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "BGE-1.5 vs Rerank BGE(S+B)": {
+          "rank_diff": 0.5718085106382982,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+B": {
+          "rank_diff": 0.6808510638297873,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+V": {
+          "rank_diff": 0.7553191489361706,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "Voyage vs Rerank BGE(S+B)": {
+          "rank_diff": 0.7021276595744683,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "Hybrid S+B vs Hybrid S+V": {
+          "rank_diff": 0.07446808510638325,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "Hybrid S+B vs Rerank BGE(S+B)": {
+          "rank_diff": 0.021276595744680993,
+          "cd": 0.9290285972311281,
+          "sig": false
+        },
+        "Hybrid S+V vs Rerank BGE(S+B)": {
+          "rank_diff": 0.05319148936170226,
+          "cd": 0.9290285972311281,
+          "sig": false
+        }
+      }
+    },
+    "fiqa": {
+      "chi2": 181.1741564967696,
+      "p": 1.910829643490727e-36,
+      "sig": true,
+      "n": 180,
+      "k": 7,
+      "ranks": {
+        "BM25": 5.488888888888889,
+        "SPLADE": 3.7666666666666666,
+        "BGE-1.5": 3.9944444444444445,
+        "Voyage": 4.266666666666667,
+        "Hybrid S+B": 3.425,
+        "Hybrid S+V": 3.275,
+        "Rerank BGE(S+B)": 3.783333333333333
+      },
+      "cd": 0.9494492476078746,
+      "pairs": {
+        "BM25 vs SPLADE": {
+          "rank_diff": 1.7222222222222223,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "BM25 vs BGE-1.5": {
+          "rank_diff": 1.4944444444444445,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "BM25 vs Voyage": {
+          "rank_diff": 1.2222222222222223,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+B": {
+          "rank_diff": 2.063888888888889,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+V": {
+          "rank_diff": 2.213888888888889,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "BM25 vs Rerank BGE(S+B)": {
+          "rank_diff": 1.7055555555555557,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "SPLADE vs BGE-1.5": {
+          "rank_diff": 0.22777777777777786,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "SPLADE vs Voyage": {
+          "rank_diff": 0.5,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+B": {
+          "rank_diff": 0.3416666666666668,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+V": {
+          "rank_diff": 0.4916666666666667,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "SPLADE vs Rerank BGE(S+B)": {
+          "rank_diff": 0.016666666666666607,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "BGE-1.5 vs Voyage": {
+          "rank_diff": 0.27222222222222214,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+B": {
+          "rank_diff": 0.5694444444444446,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+V": {
+          "rank_diff": 0.7194444444444446,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "BGE-1.5 vs Rerank BGE(S+B)": {
+          "rank_diff": 0.21111111111111125,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+B": {
+          "rank_diff": 0.8416666666666668,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+V": {
+          "rank_diff": 0.9916666666666667,
+          "cd": 0.9494492476078746,
+          "sig": true
+        },
+        "Voyage vs Rerank BGE(S+B)": {
+          "rank_diff": 0.4833333333333334,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "Hybrid S+B vs Hybrid S+V": {
+          "rank_diff": 0.1499999999999999,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "Hybrid S+B vs Rerank BGE(S+B)": {
+          "rank_diff": 0.3583333333333334,
+          "cd": 0.9494492476078746,
+          "sig": false
+        },
+        "Hybrid S+V vs Rerank BGE(S+B)": {
+          "rank_diff": 0.5083333333333333,
+          "cd": 0.9494492476078746,
+          "sig": false
+        }
+      }
+    },
+    "govt": {
+      "chi2": 106.54727564102555,
+      "p": 1.0760893774513724e-20,
+      "sig": true,
+      "n": 201,
+      "k": 7,
+      "ranks": {
+        "BM25": 4.975124378109452,
+        "SPLADE": 3.9950248756218905,
+        "BGE-1.5": 4.253731343283582,
+        "Voyage": 3.962686567164179,
+        "Hybrid S+B": 3.7139303482587063,
+        "Hybrid S+V": 3.283582089552239,
+        "Rerank BGE(S+B)": 3.81592039800995
+      },
+      "cd": 0.8984832362242289,
+      "pairs": {
+        "BM25 vs SPLADE": {
+          "rank_diff": 0.9800995024875618,
+          "cd": 0.8984832362242289,
+          "sig": true
+        },
+        "BM25 vs BGE-1.5": {
+          "rank_diff": 0.7213930348258701,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "BM25 vs Voyage": {
+          "rank_diff": 1.0124378109452734,
+          "cd": 0.8984832362242289,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+B": {
+          "rank_diff": 1.261194029850746,
+          "cd": 0.8984832362242289,
+          "sig": true
+        },
+        "BM25 vs Hybrid S+V": {
+          "rank_diff": 1.6915422885572133,
+          "cd": 0.8984832362242289,
+          "sig": true
+        },
+        "BM25 vs Rerank BGE(S+B)": {
+          "rank_diff": 1.1592039800995022,
+          "cd": 0.8984832362242289,
+          "sig": true
+        },
+        "SPLADE vs BGE-1.5": {
+          "rank_diff": 0.2587064676616917,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "SPLADE vs Voyage": {
+          "rank_diff": 0.03233830845771157,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+B": {
+          "rank_diff": 0.2810945273631842,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "SPLADE vs Hybrid S+V": {
+          "rank_diff": 0.7114427860696515,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "SPLADE vs Rerank BGE(S+B)": {
+          "rank_diff": 0.17910447761194037,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "BGE-1.5 vs Voyage": {
+          "rank_diff": 0.29104477611940327,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+B": {
+          "rank_diff": 0.5398009950248759,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "BGE-1.5 vs Hybrid S+V": {
+          "rank_diff": 0.9701492537313432,
+          "cd": 0.8984832362242289,
+          "sig": true
+        },
+        "BGE-1.5 vs Rerank BGE(S+B)": {
+          "rank_diff": 0.43781094527363207,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+B": {
+          "rank_diff": 0.24875621890547261,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "Voyage vs Hybrid S+V": {
+          "rank_diff": 0.6791044776119399,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "Voyage vs Rerank BGE(S+B)": {
+          "rank_diff": 0.1467661691542288,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "Hybrid S+B vs Hybrid S+V": {
+          "rank_diff": 0.4303482587064673,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "Hybrid S+B vs Rerank BGE(S+B)": {
+          "rank_diff": 0.10199004975124382,
+          "cd": 0.8984832362242289,
+          "sig": false
+        },
+        "Hybrid S+V vs Rerank BGE(S+B)": {
+          "rank_diff": 0.5323383084577111,
+          "cd": 0.8984832362242289,
+          "sig": false
+        }
+      }
+    }
+  },
+  "turn_degradation": {
+    "Hybrid S+B rewrite": {
+      "clapnq": {
+        "rho": -0.45,
+        "p": 0.22421610749233675,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 9,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "cloud": {
+        "rho": 0.29422111670210543,
+        "p": 0.35326505938428154,
+        "sig_raw": false,
+        "dir": "improving",
+        "n_points": 12,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "fiqa": {
+        "rho": -0.34545454545454546,
+        "p": 0.3282265114713672,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "govt": {
+        "rho": -0.13939393939393938,
+        "p": 0.7009318849100584,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      }
+    },
+    "Hybrid S+B no-rewrite": {
+      "clapnq": {
+        "rho": -0.39999999999999997,
+        "p": 0.286105101908313,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 9,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "cloud": {
+        "rho": 0.42732114568639123,
+        "p": 0.16587727319738632,
+        "sig_raw": false,
+        "dir": "improving",
+        "n_points": 12,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "fiqa": {
+        "rho": -0.28484848484848485,
+        "p": 0.4250381548921454,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "govt": {
+        "rho": -0.309090909090909,
+        "p": 0.38484123026128353,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      }
+    },
+    "Hybrid S+V rewrite": {
+      "clapnq": {
+        "rho": -0.8333333333333333,
+        "p": 0.005265691029161747,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 9,
+        "holm_p": 0.11465215886754115,
+        "sig": false
+      },
+      "cloud": {
+        "rho": 0.39860139860139865,
+        "p": 0.19933549461780897,
+        "sig_raw": false,
+        "dir": "improving",
+        "n_points": 12,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "fiqa": {
+        "rho": -0.5151515151515151,
+        "p": 0.1275528697032343,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "govt": {
+        "rho": -0.32121212121212117,
+        "p": 0.36546831043867045,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      }
+    },
+    "Hybrid S+V no-rewrite": {
+      "clapnq": {
+        "rho": -0.45,
+        "p": 0.22421610749233675,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 9,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "cloud": {
+        "rho": 0.35026323416917315,
+        "p": 0.26434439552630806,
+        "sig_raw": false,
+        "dir": "improving",
+        "n_points": 12,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "fiqa": {
+        "rho": -0.7333333333333332,
+        "p": 0.015800596250571577,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 0.28441073251028837,
+        "sig": false
+      },
+      "govt": {
+        "rho": -0.4545454545454545,
+        "p": 0.18690481034933196,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      }
+    },
+    "SPLADE rewrite": {
+      "clapnq": {
+        "rho": -0.8166666666666667,
+        "p": 0.0072247852463587885,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 9,
+        "holm_p": 0.13727091968081698,
+        "sig": false
+      },
+      "cloud": {
+        "rho": 0.3012263813854889,
+        "p": 0.34137229471421904,
+        "sig_raw": false,
+        "dir": "improving",
+        "n_points": 12,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "fiqa": {
+        "rho": -0.1515151515151515,
+        "p": 0.6760651759978539,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      },
+      "govt": {
+        "rho": -0.23636363636363633,
+        "p": 0.5108853175152003,
+        "sig_raw": false,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 1.0,
+        "sig": false
+      }
+    },
+    "SPLADE fullhist": {
+      "clapnq": {
+        "rho": -1.0,
+        "p": 0.0,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 9,
+        "holm_p": 0.0,
+        "sig": true
+      },
+      "cloud": {
+        "rho": -0.9648126568294783,
+        "p": 4.00443693809426e-07,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 12,
+        "holm_p": 9.210204957616798e-06,
+        "sig": true
+      },
+      "fiqa": {
+        "rho": -0.8024353176576852,
+        "p": 0.005211461766706416,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 0.11465215886754115,
+        "sig": false
+      },
+      "govt": {
+        "rho": -0.7939393939393938,
+        "p": 0.006099923313696911,
+        "sig_raw": true,
+        "dir": "degrading",
+        "n_points": 10,
+        "holm_p": 0.1219984662739382,
+        "sig": false
+      }
+    }
+  },
+  "turn_degradation_holm": {
+    "total": 24,
+    "sig_raw": 7,
+    "sig_holm": 2
+  },
+  "cross_domain_kendall": {
+    "rankings": {
+      "clapnq": {
+        "Hybrid S+V": 1,
+        "Rerank BGE(S+B)": 2,
+        "Hybrid S+B": 3,
+        "SPLADE": 4,
+        "Voyage": 5,
+        "BGE-1.5": 6,
+        "BM25": 7
+      },
+      "cloud": {
+        "Hybrid S+V": 1,
+        "Rerank BGE(S+B)": 2,
+        "SPLADE": 3,
+        "Hybrid S+B": 4,
+        "BGE-1.5": 5,
+        "Voyage": 6,
+        "BM25": 7
+      },
+      "fiqa": {
+        "Hybrid S+V": 1,
+        "Hybrid S+B": 2,
+        "SPLADE": 3,
+        "Rerank BGE(S+B)": 4,
+        "BGE-1.5": 5,
+        "Voyage": 6,
+        "BM25": 7
+      },
+      "govt": {
+        "Hybrid S+V": 1,
+        "Hybrid S+B": 2,
+        "Rerank BGE(S+B)": 3,
+        "SPLADE": 4,
+        "Voyage": 5,
+        "BGE-1.5": 6,
+        "BM25": 7
+      }
+    },
+    "pairwise": {
+      "clapnq vs cloud": {
+        "tau": 0.8095238095238096,
+        "p": 0.010714285714285714,
+        "holm_p": 0.053571428571428575,
+        "sig_holm": false
+      },
+      "clapnq vs fiqa": {
+        "tau": 0.7142857142857143,
+        "p": 0.03015873015873016,
+        "holm_p": 0.09047619047619047,
+        "sig_holm": false
+      },
+      "clapnq vs govt": {
+        "tau": 0.9047619047619049,
+        "p": 0.002777777777777778,
+        "holm_p": 0.016666666666666666,
+        "sig_holm": true
+      },
+      "cloud vs fiqa": {
+        "tau": 0.7142857142857143,
+        "p": 0.03015873015873016,
+        "holm_p": 0.09047619047619047,
+        "sig_holm": false
+      },
+      "cloud vs govt": {
+        "tau": 0.7142857142857143,
+        "p": 0.03015873015873016,
+        "holm_p": 0.09047619047619047,
+        "sig_holm": false
+      },
+      "fiqa vs govt": {
+        "tau": 0.8095238095238096,
+        "p": 0.010714285714285714,
+        "holm_p": 0.053571428571428575,
+        "sig_holm": false
+      }
+    },
+    "mean_tau": 0.7777777777777778,
+    "h5_supported": false,
+    "holm_applied": true
+  },
+  "effect_sizes": [
+    {
+      "comparison": "Hybrid S+B vs BM25",
+      "domain": "clapnq",
+      "d": 0.8481674562645638,
+      "label": "large",
+      "diff": 0.27447113034306636
+    },
+    {
+      "comparison": "Hybrid S+B vs BM25",
+      "domain": "cloud",
+      "d": 0.5539948849868649,
+      "label": "medium",
+      "diff": 0.19041732918506424
+    },
+    {
+      "comparison": "Hybrid S+B vs BM25",
+      "domain": "fiqa",
+      "d": 0.7509492595544635,
+      "label": "medium",
+      "diff": 0.25250363471587384
+    },
+    {
+      "comparison": "Hybrid S+B vs BM25",
+      "domain": "govt",
+      "d": 0.44935313569258567,
+      "label": "small",
+      "diff": 0.1745770305942292
+    },
+    {
+      "comparison": "Hybrid S+B vs SPLADE",
+      "domain": "clapnq",
+      "d": 0.12290786703124842,
+      "label": "negligible",
+      "diff": 0.02193809425221687
+    },
+    {
+      "comparison": "Hybrid S+B vs SPLADE",
+      "domain": "cloud",
+      "d": -0.01241375559095521,
+      "label": "negligible",
+      "diff": -0.002469860145562598
+    },
+    {
+      "comparison": "Hybrid S+B vs SPLADE",
+      "domain": "fiqa",
+      "d": 0.04378688657448916,
+      "label": "negligible",
+      "diff": 0.010608364641776329
+    },
+    {
+      "comparison": "Hybrid S+B vs SPLADE",
+      "domain": "govt",
+      "d": 0.09243776256541208,
+      "label": "negligible",
+      "diff": 0.02000309556523504
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-1.5",
+      "domain": "clapnq",
+      "d": 0.2201513964292536,
+      "label": "small",
+      "diff": 0.03803880832417091
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-1.5",
+      "domain": "cloud",
+      "d": 0.23984467099124154,
+      "label": "small",
+      "diff": 0.04961144270959626
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-1.5",
+      "domain": "fiqa",
+      "d": 0.25878195262074566,
+      "label": "small",
+      "diff": 0.049938509022785835
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-1.5",
+      "domain": "govt",
+      "d": 0.3236783581449731,
+      "label": "small",
+      "diff": 0.06348006345561119
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-M3",
+      "domain": "clapnq",
+      "d": 0.4513302816877582,
+      "label": "small",
+      "diff": 0.11418813582900939
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-M3",
+      "domain": "cloud",
+      "d": 0.4614550111231901,
+      "label": "small",
+      "diff": 0.13957475034158665
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-M3",
+      "domain": "fiqa",
+      "d": 0.5252561813832445,
+      "label": "medium",
+      "diff": 0.13435143443217473
+    },
+    {
+      "comparison": "Hybrid S+B vs BGE-M3",
+      "domain": "govt",
+      "d": 0.49468527319944183,
+      "label": "small",
+      "diff": 0.15005268549026893
+    },
+    {
+      "comparison": "Hybrid S+B vs Voyage",
+      "domain": "clapnq",
+      "d": 0.11122012881500452,
+      "label": "negligible",
+      "diff": 0.025361193609780446
+    },
+    {
+      "comparison": "Hybrid S+B vs Voyage",
+      "domain": "cloud",
+      "d": 0.24640600731469375,
+      "label": "small",
+      "diff": 0.07309017614595995
+    },
+    {
+      "comparison": "Hybrid S+B vs Voyage",
+      "domain": "fiqa",
+      "d": 0.3194610388207686,
+      "label": "small",
+      "diff": 0.08476884375044627
+    },
+    {
+      "comparison": "Hybrid S+B vs Voyage",
+      "domain": "govt",
+      "d": 0.11703643425352114,
+      "label": "negligible",
+      "diff": 0.03321273753454658
+    },
+    {
+      "comparison": "Hybrid S+V vs BM25",
+      "domain": "clapnq",
+      "d": 0.9166130499794124,
+      "label": "large",
+      "diff": 0.30150509544494936
+    },
+    {
+      "comparison": "Hybrid S+V vs BM25",
+      "domain": "cloud",
+      "d": 0.6143693042954802,
+      "label": "medium",
+      "diff": 0.20861110472851138
+    },
+    {
+      "comparison": "Hybrid S+V vs BM25",
+      "domain": "fiqa",
+      "d": 0.8523021960439822,
+      "label": "large",
+      "diff": 0.280911769472313
+    },
+    {
+      "comparison": "Hybrid S+V vs BM25",
+      "domain": "govt",
+      "d": 0.5980847318164824,
+      "label": "medium",
+      "diff": 0.22334253761133854
+    },
+    {
+      "comparison": "Hybrid S+V vs SPLADE",
+      "domain": "clapnq",
+      "d": 0.2686963350290977,
+      "label": "small",
+      "diff": 0.04897205935409979
+    },
+    {
+      "comparison": "Hybrid S+V vs SPLADE",
+      "domain": "cloud",
+      "d": 0.07043869207770698,
+      "label": "negligible",
+      "diff": 0.015723915397884484
+    },
+    {
+      "comparison": "Hybrid S+V vs SPLADE",
+      "domain": "fiqa",
+      "d": 0.17092254478885235,
+      "label": "negligible",
+      "diff": 0.03901649939821553
+    },
+    {
+      "comparison": "Hybrid S+V vs SPLADE",
+      "domain": "govt",
+      "d": 0.3290439115713454,
+      "label": "small",
+      "diff": 0.06876860258234443
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-1.5",
+      "domain": "clapnq",
+      "d": 0.27342396469907687,
+      "label": "small",
+      "diff": 0.06507277342605386
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-1.5",
+      "domain": "cloud",
+      "d": 0.22126601574080654,
+      "label": "small",
+      "diff": 0.06780521825304334
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-1.5",
+      "domain": "fiqa",
+      "d": 0.30424218668664044,
+      "label": "small",
+      "diff": 0.07834664377922505
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-1.5",
+      "domain": "govt",
+      "d": 0.35665396752448536,
+      "label": "small",
+      "diff": 0.1122455704727206
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-M3",
+      "domain": "clapnq",
+      "d": 0.5183864423455055,
+      "label": "medium",
+      "diff": 0.1412221009308923
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-M3",
+      "domain": "cloud",
+      "d": 0.491601693790314,
+      "label": "small",
+      "diff": 0.15776852588503373
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-M3",
+      "domain": "fiqa",
+      "d": 0.5481408945101776,
+      "label": "medium",
+      "diff": 0.16275956918861395
+    },
+    {
+      "comparison": "Hybrid S+V vs BGE-M3",
+      "domain": "govt",
+      "d": 0.5980377073108827,
+      "label": "medium",
+      "diff": 0.19881819250737828
+    },
+    {
+      "comparison": "Hybrid S+V vs Voyage",
+      "domain": "clapnq",
+      "d": 0.3357937101167176,
+      "label": "small",
+      "diff": 0.05239515871166337
+    },
+    {
+      "comparison": "Hybrid S+V vs Voyage",
+      "domain": "cloud",
+      "d": 0.36337612736487995,
+      "label": "small",
+      "diff": 0.09128395168940702
+    },
+    {
+      "comparison": "Hybrid S+V vs Voyage",
+      "domain": "fiqa",
+      "d": 0.4602153307199873,
+      "label": "small",
+      "diff": 0.11317697850688546
+    },
+    {
+      "comparison": "Hybrid S+V vs Voyage",
+      "domain": "govt",
+      "d": 0.39388556273241015,
+      "label": "small",
+      "diff": 0.08197824455165596
+    },
+    {
+      "comparison": "S+B rewrite vs S+B no-rewrite",
+      "domain": "clapnq",
+      "d": 0.13882067008645335,
+      "label": "negligible",
+      "diff": 0.03569956627778999
+    },
+    {
+      "comparison": "S+B rewrite vs S+B no-rewrite",
+      "domain": "cloud",
+      "d": -0.01885947183938243,
+      "label": "negligible",
+      "diff": -0.004265361650405371
+    },
+    {
+      "comparison": "S+B rewrite vs S+B no-rewrite",
+      "domain": "fiqa",
+      "d": 0.12468695138901055,
+      "label": "negligible",
+      "diff": 0.033361466225198436
+    },
+    {
+      "comparison": "S+B rewrite vs S+B no-rewrite",
+      "domain": "govt",
+      "d": 0.16647595706343415,
+      "label": "negligible",
+      "diff": 0.04381844868716663
+    },
+    {
+      "comparison": "S+V rewrite vs S+V no-rewrite",
+      "domain": "clapnq",
+      "d": 0.09746816344243454,
+      "label": "negligible",
+      "diff": 0.024261647261157135
+    },
+    {
+      "comparison": "S+V rewrite vs S+V no-rewrite",
+      "domain": "cloud",
+      "d": 0.011347269404070508,
+      "label": "negligible",
+      "diff": 0.002311281398863392
+    },
+    {
+      "comparison": "S+V rewrite vs S+V no-rewrite",
+      "domain": "fiqa",
+      "d": 0.22279296098246934,
+      "label": "small",
+      "diff": 0.05801805966756412
+    },
+    {
+      "comparison": "S+V rewrite vs S+V no-rewrite",
+      "domain": "govt",
+      "d": 0.19027724847516767,
+      "label": "negligible",
+      "diff": 0.05356280301230383
+    },
+    {
+      "comparison": "SPLADE rewrite vs SPLADE fullhist",
+      "domain": "clapnq",
+      "d": 0.5441580167475164,
+      "label": "medium",
+      "diff": 0.19442691464666464
+    },
+    {
+      "comparison": "SPLADE rewrite vs SPLADE fullhist",
+      "domain": "cloud",
+      "d": 0.6599385073135893,
+      "label": "medium",
+      "diff": 0.2237675172702081
+    },
+    {
+      "comparison": "SPLADE rewrite vs SPLADE fullhist",
+      "domain": "fiqa",
+      "d": 0.620623744960829,
+      "label": "medium",
+      "diff": 0.18536267204897452
+    },
+    {
+      "comparison": "SPLADE rewrite vs SPLADE fullhist",
+      "domain": "govt",
+      "d": 0.36744857327398883,
+      "label": "small",
+      "diff": 0.14685957424264698
+    },
+    {
+      "comparison": "BGE-1.5 rewrite vs BGE-1.5 fullhist",
+      "domain": "clapnq",
+      "d": 0.2577737050132803,
+      "label": "small",
+      "diff": 0.062496786749900876
+    },
+    {
+      "comparison": "BGE-1.5 rewrite vs BGE-1.5 fullhist",
+      "domain": "cloud",
+      "d": 0.05659347941651064,
+      "label": "negligible",
+      "diff": 0.010874007856376617
+    },
+    {
+      "comparison": "BGE-1.5 rewrite vs BGE-1.5 fullhist",
+      "domain": "fiqa",
+      "d": 0.15036628190500537,
+      "label": "negligible",
+      "diff": 0.033078454859738746
+    },
+    {
+      "comparison": "BGE-1.5 rewrite vs BGE-1.5 fullhist",
+      "domain": "govt",
+      "d": 0.24001016572159659,
+      "label": "small",
+      "diff": 0.0662168505925322
+    },
+    {
+      "comparison": "Rerank BGE(S+B) vs Hybrid S+B",
+      "domain": "clapnq",
+      "d": 0.0261831411090312,
+      "label": "negligible",
+      "diff": 0.005916118681457656
+    },
+    {
+      "comparison": "Rerank BGE(S+B) vs Hybrid S+B",
+      "domain": "cloud",
+      "d": 0.04243288453200213,
+      "label": "negligible",
+      "diff": 0.01152337908921345
+    },
+    {
+      "comparison": "Rerank BGE(S+B) vs Hybrid S+B",
+      "domain": "fiqa",
+      "d": -0.0363055214764633,
+      "label": "negligible",
+      "diff": -0.010778007856920952
+    },
+    {
+      "comparison": "Rerank BGE(S+B) vs Hybrid S+B",
+      "domain": "govt",
+      "d": -0.03289025467888543,
+      "label": "negligible",
+      "diff": -0.00935522476621043
+    }
+  ],
+  "hard_failures": {
+    "total": 320,
+    "by_domain": {
+      "clapnq": 80,
+      "cloud": 80,
+      "fiqa": 80,
+      "govt": 80
+    },
+    "by_turn": {
+      "7": 46,
+      "1": 27,
+      "6": 40,
+      "8": 32,
+      "3": 48,
+      "5": 45,
+      "9": 9,
+      "2": 31,
+      "4": 42
+    },
+    "recurrent": 51,
+    "retrievable": 259
+  }
+}

@@ -1,0 +1,246 @@
+from typing import List, Dict, Union, Tuple
+import os
+import pytrec_eval
+import argparse
+import csv, json
+import pandas as pd
+
+def evaluate(qrels: Dict[str, Dict[str, int]], 
+                 results: Dict[str, Dict[str, float]], 
+                 k_values: List[int],
+                 ignore_identical_ids: bool=True) -> Tuple[Dict[str, float], Dict[str, float], Dict[str, float], Dict[str, float], Dict[str, float], Dict[str, float]]:
+        
+        if ignore_identical_ids:
+            popped = []
+            for qid, rels in results.items():
+                for pid in list(rels):
+                    if qid == pid:
+                        results[qid].pop(pid)
+                        popped.append(pid)
+
+        ndcg = {}
+        _map = {}
+        recall = {}
+        precision = {}
+        mrr = {}
+        success = {}
+        
+        for k in k_values:
+            ndcg[f"NDCG@{k}"] = 0.0
+            _map[f"MAP@{k}"] = 0.0
+            recall[f"Recall@{k}"] = 0.0
+            precision[f"P@{k}"] = 0.0
+            success[f"Success@{k}"] = 0.0
+        mrr["MRR"] = 0.0
+        
+        map_string = "map_cut." + ",".join([str(k) for k in k_values])
+        ndcg_string = "ndcg_cut." + ",".join([str(k) for k in k_values])
+        recall_string = "recall." + ",".join([str(k) for k in k_values])
+        precision_string = "P." + ",".join([str(k) for k in k_values])
+        success_string = "success." + ",".join([str(k) for k in k_values])
+        
+        evaluator = pytrec_eval.RelevanceEvaluator(
+            qrels, 
+            {map_string, ndcg_string, recall_string, precision_string, 
+             "recip_rank", success_string}
+        )
+        scores = evaluator.evaluate(results)
+        
+        for query_id in scores.keys():
+            for k in k_values:
+                ndcg[f"NDCG@{k}"] += scores[query_id]["ndcg_cut_" + str(k)]
+                recall[f"Recall@{k}"] += scores[query_id]["recall_" + str(k)]
+                _map[f"MAP@{k}"] += scores[query_id]["map_cut_" + str(k)]
+                precision[f"P@{k}"] += scores[query_id]["P_" + str(k)]
+                success[f"Success@{k}"] += scores[query_id]["success_" + str(k)]
+            mrr["MRR"] += scores[query_id]["recip_rank"]
+        
+        for k in k_values:
+            if len(scores) > 0:
+                ndcg[f"NDCG@{k}"] = round(ndcg[f"NDCG@{k}"]/len(scores), 5)
+                recall[f"Recall@{k}"] = round(recall[f"Recall@{k}"]/len(scores), 5)
+                _map[f"MAP@{k}"] = round(_map[f"MAP@{k}"]/len(scores), 5)
+                precision[f"P@{k}"] = round(precision[f"P@{k}"]/len(scores), 5)
+                success[f"Success@{k}"] = round(success[f"Success@{k}"]/len(scores), 5)
+            else:
+                ndcg[f"NDCG@{k}"] = 0.0
+                recall[f"Recall@{k}"] = 0.0
+                _map[f"MAP@{k}"] = 0.0
+                precision[f"P@{k}"] = 0.0
+                success[f"Success@{k}"] = 0.0
+        
+        if len(scores) > 0:
+            mrr["MRR"] = round(mrr["MRR"] / len(scores), 5)
+        else:
+            mrr["MRR"] = 0.0
+
+        return scores, ndcg, _map, recall, precision, mrr, success
+    
+
+def compute_results(results, qrels, k_values: List[int] = [1, 3, 5, 10, 20, 100]):
+
+    if len(results) == 0:
+        ndcg = _map = recall = precision = mrr = success = {i: '-' for i in k_values}
+        scores_per_query_id = {}
+    else:
+        scores_per_query_id, ndcg, _map, recall, precision, mrr, success = evaluate(qrels, results, k_values)
+
+    scores_global = {}
+    scores_global["nDCG"] = ndcg
+    scores_global["Recall"] = recall
+    scores_global["MAP"] = _map
+    scores_global["Precision"] = precision
+    scores_global["MRR"] = mrr
+    scores_global["Success"] = success
+    
+    # Store k_values for downstream consumers to resolve metrics by name
+    scores_global["_k_values"] = k_values
+    
+    return scores_global, scores_per_query_id
+   
+def load_qrels(qrels_file):
+    
+    qrels = {}
+    with open(qrels_file, encoding="utf-8") as f_handle:
+        reader = csv.reader(f_handle, delimiter="\t", quoting=csv.QUOTE_MINIMAL)
+        next(reader)
+    
+        for id, row in enumerate(reader):
+            query_id, corpus_id, score = row[0], row[1], int(row[2])
+
+            if query_id not in qrels:
+                qrels[query_id] = {corpus_id: score}
+            else:
+                qrels[query_id][corpus_id] = score
+ 
+    return qrels
+ 
+def prepare_results_dict(input_file):
+    results = {}
+    collection_results = {}
+    with open(input_file, 'r') as f:
+        for line in f:
+            item = json.loads(line)
+            query_id = item.get("task_id") or item.get("_id")
+            
+            doc_scores = {}
+            for ctx in item.get("contexts", []):
+                doc_id = ctx["document_id"]
+                score = ctx["score"]
+                doc_scores[doc_id] = score
+            
+            results[query_id] = doc_scores
+            collection_results[query_id] = item["Collection"]
+            
+    return results, collection_results
+
+
+def enrich_json_retrieval(input_file, scores_per_instance, output_file):
+ 
+    retrieval_predictions_pd = pd.read_json(input_file, lines=True)
+    
+    retrieval_predictions_pd['retriever_scores'] = retrieval_predictions_pd['task_id'].map(scores_per_instance)
+    retrieval_predictions_pd["retriever_scores"] = retrieval_predictions_pd["retriever_scores"].apply(lambda x: {} if pd.isna(x) else x)
+
+    retrieval_predictions_pd.to_json(output_file, orient="records", lines=True)
+
+def main():
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input_file", type=str, required=True, help="Path to input JSON file")
+    parser.add_argument("--output_file", type=str, required=True, help="Path to output JSON file")
+    
+    args = parser.parse_args()
+    input_file = args.input_file
+    output_file = args.output_file
+    
+    retrieval_predictions, collection_results = prepare_results_dict(input_file)
+    
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    scores_global_lst = []
+    global_scores_per_query_id = {}
+    collections = set(collection_results.values())
+    
+    for collection_name in collections:
+        print("\ncollection_name:", collection_name)
+
+        if "clapnq" in collection_name:
+            qrels_file = os.path.join(script_dir, "../../../data/retrieval_tasks/clapnq/qrels/dev.tsv")
+        elif "govt" in collection_name:
+            qrels_file = os.path.join(script_dir, "../../../data/retrieval_tasks/govt/qrels/dev.tsv")
+        elif "fiqa" in collection_name:
+            qrels_file = os.path.join(script_dir, "../../../data/retrieval_tasks/fiqa/qrels/dev.tsv")
+        elif "cloud" in collection_name or "ibmcloud" in collection_name:
+            qrels_file = os.path.join(script_dir, "../../../data/retrieval_tasks/cloud/qrels/dev.tsv")
+        else:
+            print(f"Warning: Could not determine qrels for {collection_name}")
+            continue
+            
+        qrels = load_qrels(qrels_file)
+        
+        preds_for_collection = {
+            qid: retrieval_predictions[qid]
+            for qid, coll in collection_results.items()
+            if coll == collection_name
+        }
+        
+
+        scores_global, scores_per_query_id = compute_results(preds_for_collection, qrels)
+        scores_global['collection'] = collection_name
+        scores_global['count'] = len(preds_for_collection)
+        
+        print("Retriever Evaluation Aggregate Scores:", scores_global)
+        
+        global_scores_per_query_id.update(scores_per_query_id)
+        scores_global_lst.append(scores_global)
+
+    
+    n = len(scores_global_lst[0]['Recall'])
+    total_count = sum(d['count'] for d in scores_global_lst)
+
+    # Recall and nDCG are now dicts like {"Recall@1": 0.1, "Recall@3": 0.2, ...}
+    recall_keys = [k for k in scores_global_lst[0]['Recall'] if k.startswith("Recall@")]
+    ndcg_keys = [k for k in scores_global_lst[0]['nDCG'] if k.startswith("NDCG@")]
+    success_keys = [k for k in scores_global_lst[0]['Success'] if k.startswith("Success@")]
+
+    weighted_avg_recall = {}
+    weighted_avg_ndcg = {}
+    weighted_avg_success = {}
+    weighted_avg_mrr = 0.0
+    for key in recall_keys:
+        weighted_sum = sum(d['Recall'][key] * d['count'] for d in scores_global_lst)
+        weighted_avg_recall[key] = weighted_sum / total_count
+    for key in ndcg_keys:
+        weighted_sum = sum(d['nDCG'][key] * d['count'] for d in scores_global_lst)
+        weighted_avg_ndcg[key] = weighted_sum / total_count
+    for key in success_keys:
+        weighted_sum = sum(d['Success'][key] * d['count'] for d in scores_global_lst)
+        weighted_avg_success[key] = weighted_sum / total_count
+    weighted_avg_mrr = sum(d['MRR']['MRR'] * d['count'] for d in scores_global_lst) / total_count
+
+    print("Weighted average Recall:", weighted_avg_recall)  
+    print("Weighted average nDCG:", weighted_avg_ndcg)
+    print("Weighted average MRR:", weighted_avg_mrr)
+    print("Weighted average Success:", weighted_avg_success)
+
+    rows = scores_global_lst.copy()
+    rows.append({
+        "nDCG": weighted_avg_ndcg,
+        "Recall": weighted_avg_recall,
+        "MRR": {"MRR": weighted_avg_mrr},
+        "Success": weighted_avg_success,
+        "collection": "all",
+        "count": total_count
+    })
+
+    df = pd.DataFrame(rows)
+    df.to_csv(f"{os.path.splitext(output_file)[0]}_aggregate.csv", index=False)
+    
+    enrich_json_retrieval(input_file, global_scores_per_query_id, output_file)
+
+if __name__ == "__main__":
+    
+    main()
+    
+    
