@@ -30,13 +30,13 @@ This repository contains the code, configurations, and resources for our system 
 We combined **SPLADE-v3** (sparse) and **Voyage-3-large** (dense) retrievers using **Reciprocal Rank Fusion** (RRF, k=60). Query rewriting with Cohere Command-R bridges the gap between conversational turns and retrieval queries.
 
 <p align="center">
-  <img src="img/subtaskA_experiments_results.png" alt="Task A experiment results" width="720"/>
+  <img src="img/subtaskA_experiments_results.png" alt="Task A experiment results" width="520"/>
 </p>
 
 **Key finding:** Hybrid fusion significantly outperforms individual components in 32/40 paired comparisons (Wilcoxon, Holm-Bonferroni corrected, α=0.05).
 
 <p align="center">
-  <img src="img/subtaskA_experiments_results_between_rewriting_strategies.png" alt="Rewriting strategy comparison" width="720"/>
+  <img src="img/subtaskA_experiments_results_between_rewriting_strategies.png" alt="Rewriting strategy comparison" width="520"/>
 </p>
 
 | System | CLAPNQ | Cloud | FiQA | Govt | **Avg nDCG@10** |
@@ -54,7 +54,7 @@ We combined **SPLADE-v3** (sparse) and **Voyage-3-large** (dense) retrievers usi
 We fine-tuned and prompted **GPT-4o** and **Cohere Command-R** to classify whether a retrieved passage can answer the conversational query, producing answer labels and confidence scores.
 
 <p align="center">
-  <img src="img/SubtaskB_results_experiments.png" alt="Task B results" width="720"/>
+  <img src="img/SubtaskB_results_experiments.png" alt="Task B results" width="520"/>
 </p>
 
 → See [`TASK B/`](TASK%20B/) for notebooks and generation scripts.
@@ -72,7 +72,7 @@ Full pipeline integrating Task A retrieval with Task B generation, producing gro
 ## Final Results
 
 <p align="center">
-  <img src="img/Final_test_results.png" alt="Final test results" width="720"/>
+  <img src="img/Final_test_results.png" alt="Final test results" width="520"/>
 </p>
 
 ---
